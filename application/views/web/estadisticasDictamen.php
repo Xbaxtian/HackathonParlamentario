@@ -23,7 +23,7 @@
 					<div class="row mx-auto">
 						<div class="col-auto mx-auto">
 							<ul class="list-group m-2">
-  								<li class="aprueba" align="center"style="background-color: #1d1d1d;">Del total lo aprueba el <b>68%</b></li>
+  								<li class="aprueba" align="center"style="background-color: #1d1d1d;">Del total lo aprueba el <b>48%</b></li>
 							</ul>
 						</div>
 					</div>

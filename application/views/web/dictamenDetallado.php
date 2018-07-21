@@ -44,15 +44,18 @@
         <div class="collapse" id="valoracion">
             <div class="row" align="center">
                 <div class="col-12">
+                    <p id="ranking_valor">Regular</p>
                     <p class="clasificacion" id="ranking">
                         <input id="radio1" type="radio" name="estrellas" value="5" calificacion="Muy bueno" checked> <label for="radio1">★</label>
-                        <input id="radio2" type="radio" name="estrellas" value="4" calificacion="Bueno" checked> <label for="radio2">★</label>
-                        <input id="radio3" type="radio" name="estrellas" value="3" calificacion="Regular" checked> <label for="radio3">★</label>
-                        <input id="radio4" type="radio" name="estrellas" value="2" calificacion="Malo">         <label for="radio4">★</label>
+                        <input id="radio2" type="radio" name="estrellas" value="4" calificacion="Bueno" checked>    <label for="radio2">★</label>
+                        <input id="radio3" type="radio" name="estrellas" value="3" calificacion="Regular" checked>  <label for="radio3">★</label>
+                        <input id="radio4" type="radio" name="estrellas" value="2" calificacion="Malo">             <label for="radio4">★</label>
                         <input id="radio5" type="radio" name="estrellas" value="1" calificacion="Muy malo">         <label for="radio5">★</label>
                     </p>
-                    <p id="ranking_valor">Regular</p>
                 </div>
+            </div>
+            <div class="row">
+                <label class="col-12"><b>DEJENOS SU OPINIÓN:</b></label>
             </div>
             <div class="row">
                 <div class="col-12">
