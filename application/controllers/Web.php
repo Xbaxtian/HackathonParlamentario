@@ -22,6 +22,7 @@ class Web extends CI_Controller{
 		$dataView = array("view"=>'web/estadisticasDictamen',"data"=>array());
 		$this->load->view('layout',$dataView);
 	}
+
 }
 
 
