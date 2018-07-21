@@ -65,6 +65,17 @@ class DictamenModel extends CI_Model{
                )
          );
 
+         $this->db->select('max(id_dictamen) as id');
+         $this->db->from('dictamenes');
+         $query = $this->db->get();
+         $id = $query->result_array();
+
+         for ($i=0; $i < count($data['comisiones']) ; $i++) {
+             $this->db->insert('dictamen_comision',
+                        array('id_comisiones'=>$data['comisiones'][$i]),
+                              'id_dictamen'=>$id[0]['id']));
+         }
+
          if ($this->db->trans_status() === FALSE)
          {
              $this->db->trans_rollback();
@@ -81,5 +92,43 @@ class DictamenModel extends CI_Model{
           return "error";
        }
 
+    }
+
+    public function actualizardictamen($data){
+            $this->db->trans_begin();
+            $this->db->set('id_tipo_dictamen',$data['tipo']);
+            $this->db->set('codigo',$data['codigo']);
+            $this->db->set('titulo',$data['titulo']);
+            $this->db->set('sumilla',$data['sumilla']);
+            $this->db->set('id_estado',$data['estado']);
+            $this->db->set('fec_debate',$data['fecha']);
+            $this->db->where('id_politico', $data['id']);
+            $this->db->delete('historial_academico');
+
+            $this->db->where('id_dictamen', $data['id']);
+            $this->db->delete('dictamen_comision');
+
+            if(isset($data['comisiones'])){
+                for ($i=0; $i < count($data['comisiones']) ; $i++) {
+                    $this->db->insert('dictamen_comision',
+                               array('id_comisiones'=>$data['comisiones'][$i]),
+                                     'id_dictamen'=>$id[0]['id']));
+                }
+            }
+
+            if ($this->db->trans_status() === FALSE)
+            {
+            $this->db->trans_rollback();
+            return "error";
+            }
+            else
+            {
+            $this->db->trans_commit();
+            return "success";
+            }
+    }
+    catch (Exception $e) {
+        return "error";
+    }
     }
 }

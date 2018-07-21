@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $direccion = " ";
 
     if(isset($resultado)){
-        $valueid = $resultado['id_dictamen']
+        $valueid = $resultado['id_dictamen'];
         $titulo = $resultado['titulo'];
         $codigo = $resultado['codigo'];
         $sumilla = $resultado['sumilla'];
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="card justify-content-center">
         <div class="card-body">
             <?php echo form_open($direccion,array('id'=>'form-validado')); ?>
-            <input type="hidden" name="id" value=<?php echo $valueid; ?>>
+            <input type="hidden" name="id" value=<?php if(isset($resultado)){ echo $valueid;}else{echo " ";} ?>>
             <div class="row">
                 <div class="col-md-12">
                 <h2><label for="titulo">Título</label></h2>
@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
                 </div>
             </div>
-            <br><!-- for -->
+            <br>
             <div class="row">
                 <div class="col-md-12">
                 <h2><label for="">Comisiones Dictaminadoras</label></h2>
@@ -75,13 +75,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-6">
                     <h2><label for="">Tipo de dictámen</label></h2>
                     <select class="form-control">
-                    <?php
-                    if(isset($tdictamen)){
-
-                        for ($i=0; $i < count($tdictamen); $i++) { ?>
-                            <option name="tipo" value="<?php echo $tdictamen[$i]['id_tipo_dictamen']; ?>"><?php echo $tdictamen[$i]['descripcion']; ?></option>
-                        <?php }
-                        } ?>
+                        <option name="tipo" value="<?php if(isset($resultado)) {
+                            echo $tipodictamen[0]['id_tipo_dictamen'];
+                            }
+                            else{
+                                echo " ";
+                            }?>"
+                        ><?php if(isset($resultado)){
+                            echo $tipodictamen[0]['descripcion'];}
+                            else{
+                                echo "Tipo de dictamen";
+                            } ?></option>
+                        <?php for ($i=0; $i < count($tdictamen); $i++) {
+                                if(isset($resultado)){
+                                    if($tdictamen[$i]['descripcion'] != $tipodictamen[0]['descripcion']){?>
+                                        <option name="tipo" value="<?php echo $tdictamen[$i]['id_tipo_dictamen']; ?>"><?php echo $tdictamen[$i]['descripcion']; ?></option>
+                                <?php }
+                                }
+                                else{?>
+                                    <option name="tipo" value="<?php echo $tdictamen[$i]['id_tipo_dictamen']; ?>"><?php echo $tdictamen[$i]['descripcion']; ?></option>
+                                <?php }
+                            } ?>
                     </select>
                 </div>
             </div>
@@ -90,13 +104,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-6">
                     <h2><label for="">Estado</label></h2>
                     <select class="form-control">
+                        <option name="tipo" value="<?php if(isset($resultado)){
+                            echo $estadodictamen[0]['id_tipo_dictamen'];
+                        }
+                        else{
+                            echo " ";
+                        }?>"
+                        ><?php if(isset($resultado)){
+                            echo $estadodictamen[0]['descripcion'];}
+                            else{
+                                echo "Estados";
+                            } ?></option>
                     <?php
-                    if(isset($estados)){
-
-                        for ($i=0; $i < count($estados); $i++) { ?>
+                        for ($i=0; $i < count($estados); $i++) {
+                            if(isset($resultado)){
+                                if($estados[$i]['descripcion'] != $estadodictamen[0]['descripcion']){?>
                             <option name="estado" value="<?php echo $estados[$i]['id_estado']; ?>"><?php echo $estados[$i]['descripcion']; ?></option>
                         <?php }
-                        } ?>
+                        }
+                        else{?>
+                            <option name="estado" value="<?php echo $estados[$i]['id_estado']; ?>"><?php echo $estados[$i]['descripcion']; ?></option>
+                    <?php }
+                    }?>
                     </select>
                 </div>
             </div>

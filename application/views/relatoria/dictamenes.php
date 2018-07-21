@@ -30,7 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><button class="btn puente" href="dictamen/actualizardictamen" data-id="<?php echo $resultado[$i]['id_dictamen']?>">Editar</button></td>
                         <td><button class="btn">Plantilla</button></td>
                     </tr>
-                    <?php } }
+                    <?php }
+                    }
                     else{ ?>
                         <h3>No se registran dictámenes</h3>
                     <?php } ?>
@@ -49,8 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $(".puente").click(function(){
                 var btn = $(this);
                 $.post(btn.attr("href"), {"idObj":$(this).attr("data-id")},function(data){
-                    $("#").html("");
-                    $("#").html(data);
+                    $("#principal-container").html("");
+                    $("#principal-container").html(data);
                 }).fail(function(){
                     alert( "Error de red" );
                 })
