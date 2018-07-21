@@ -20,22 +20,29 @@
 }
 
 .clasificacion label {
-  color: grey;
+  color: white;
 }
 
 .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-  font-size: 40px;
+	background-color: black;
+	border-radius: 5px;
+	direction: rtl;
+	unicode-bidi: bidi-override;
+	font-size: 40px;
 }
 
 .clasificacion label:hover,
 label:hover ~ label {
-  color: gold;
+	color: gold;
 }
 
 .clasificacion input[type="radio"]:checked ~ label {
-  color: gold;
+	color: gold;
+}
+
+#ranking_valor{
+	font-weight: bold;
+	font-size: 20px;
 }
 
 /*botones*/
@@ -46,5 +53,5 @@ label:hover ~ label {
 
 .btn-red{
 	background-color: #ed1d24;
-	color: white;
+	color: white !important;
 }

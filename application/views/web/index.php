@@ -11,7 +11,7 @@
 				<div class="col-2"><strong>Cod</strong></div>
 				<div class="col-5"><strong>Titulo</strong></div>
 				<div class="col-3"><strong>Fecha de debate</strong></div>
-				<strong>Estadistic</strong>
+				<strong class="ml-1">Opinión</strong>
 			</div>
 			<div class="row item align-items-center py-2 ">
 				<div class="col-2"><span class="align-middle">00000</span></div>
@@ -84,7 +84,7 @@
 	</div>
 	<div class="row">
 		<div class="col-auto mx-auto my-2">
-			<button class="btn btn-red btn-shadow">Suscribirse</button>
+			<button class="btn btn-red btn-shadow pop-up" href="web/suscripcion">Suscribirse</button>
 		</div>
 	</div>
 </section>

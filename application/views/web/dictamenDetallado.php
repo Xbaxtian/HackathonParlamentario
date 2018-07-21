@@ -18,6 +18,13 @@
         <div class="card">
             <label class="col-12 mx-auto py-2" align="justified">PODER EJECUTIVO</label>
         </div>
+		<br>
+        <div class="row">
+            <label class="col-12"><b>BANCADA:</b></label>
+        </div>
+        <div class="card">
+            <label class="col-12 mx-auto py-2" align="justified"> </label>
+        </div>
         <br>
         <div class="row">
             <label class="col-12"><b>FECHA DE DEBATE:</b></label>
@@ -28,7 +35,7 @@
         <br>
         <div class="row" align="center">
             <div class="col-12">
-                <a class="btn btn-dark" data-toggle="collapse" href="#valoracion" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-red btn-shadow" data-toggle="collapse" href="#valoracion" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Valorar
                 </a>
             </div>
