@@ -33,6 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="container" id="principal-container">
 			<? $this->load->view($view)?>
 		</div>
+<<<<<<< HEAD
 		
+=======
+>>>>>>> d4453e7fd4b3d2c209e8b4af5d67e431211e029b
 	</body>
 </html>
