@@ -12,6 +12,20 @@ class Web extends CI_Controller{
 		$dataView = array("view"=>'web/index',"data"=>array());
 		$this->load->view('layout',$dataView);
 	}
+
+	public function dictamenDetallado(){
+		$dataView = array("view"=>'web/dictamenDetallado',"data"=>array());
+		$this->load->view('layout',$dataView);
+	}
+
+	public function estadisticasDictamen(){
+		$dataView = array("view"=>'web/estadisticasDictamen',"data"=>array());
+		$this->load->view('layout',$dataView);
+	}
+
+	public function suscripcion(){
+		$this->load->view("web/suscripcion");
+	}
 }
 
 
