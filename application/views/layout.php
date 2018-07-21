@@ -26,14 +26,5 @@
 		<div class="container" id="principal-container">
 			<? $this->load->view($view)?>
 		</div>
-		<footer id="main-footer">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-auto mx-auto">
-						LambdaDev
-					</div>
-				</div>
-			</div>
-		</footer>
 	</body>
 </html>

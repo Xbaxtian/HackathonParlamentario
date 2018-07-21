@@ -16,25 +16,11 @@
 }
 
 /* valoracion */
-#form {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
-}
-
-#form p {
-  text-align: center;
-}
-
-#form label {
-  font-size: 20px;
-}
-
-input[type="radio"] {
+.clasificacion input[type="radio"] {
   display: none;
 }
 
-label {
+.clasificacion label {
   color: grey;
 }
 
@@ -44,16 +30,11 @@ label {
   font-size: 40px;
 }
 
-label:hover,
+.clasificacion label:hover,
 label:hover ~ label {
   color: gold;
 }
 
-input[type="radio"]:checked ~ label {
+.clasificacion input[type="radio"]:checked ~ label {
   color: gold;
-}
-
-#main-footer{
-	background-color: red;
-
 }
