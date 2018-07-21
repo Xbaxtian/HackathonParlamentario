@@ -13,6 +13,9 @@ class Dictamen extends CI_Controller{
 
 	public function index(){
 		$dictamenes = $this->dictamenModel->getDictamenes();
+		header('Content-Type: application/json');
+		echo json_encode(array("result"=>$dictamenes));
+
 		$dataView = array("view"=>'relatoria/dictamenes',"data"=>array('dictamenes'=>$dictamenes));
 		$this->load->view('layout',$dataView);
 	}
@@ -31,8 +34,8 @@ class Dictamen extends CI_Controller{
 
 		$resultado = $this->dictamenModel->getDictamenid($id);
 		$dcomisiones = $this->comisionModel->getcomisiondictamen($id); // comisiones
-		$tipodictamen = $this->dictamenModel->obtenertipo($resultado['id_tipo_dictamen']);
-		$estadodictamen = $this->dictamenModel->obtenerestado($resultado['id_estado']);
+		$tipodictamen = $this->dictamenModel->obtenertipo($resultado[0]['id_tipo_dictamen']);
+		$estadodictamen = $this->dictamenModel->obtenerestado($resultado[0]['id_dictamen']);
 
 		$tdictamen = $this->dictamenModel->tipodictamenes();
 		$comisiones = $this->comisionModel->getComisiones();
@@ -49,14 +52,19 @@ class Dictamen extends CI_Controller{
 		$this->form_validation->set_rules("codigo", "Código", "required");
 		$this->form_validation->set_rules("sumilla", "Sumilla", "required");
 		$this->form_validation->set_rules("estado", "Estado", "required");
-		$this->form_validation->set_rules("comisiones[]", "Comisiones o Comisión", "required");
+		//$this->form_validation->set_rules("comisiones[]", "Comisiones o Comisión", "required");
         $this->form_validation->set_rules("tipo","Tipo","required");
-        $this->form_validation->set_rules("fecha","fecha de debate","required");
+        $this->form_validation->set_rules("fdebate","fecha de debate","required");
 
 		if ($this->form_validation->run() == FALSE)
         {
-            $this->anadirdictamen();
-        }
+			$tdictamen = $this->dictamenModel->tipodictamenes();
+			$comisiones = $this->comisionModel->getComisiones();
+			$estados = $this->dictamenModel->getEstados();
+
+			$data = array('tdictamen'=>$tdictamen,'comisiones'=>$comisiones,'estados'=>$estados);
+			$this->load->view('relatoria/anadirdictamen',$data);
+		}
 		else
 		{
 			$data = array('titulo' => $this->input->post("titulo"),
@@ -65,7 +73,7 @@ class Dictamen extends CI_Controller{
 						  'estado' => $this->input->post('estado'),
 						  'comisiones' => $this->input->post('comisiones'),
 					  	  'tipo'=>$this->input->post('tipo'),
-					  	  'fecha'=>$this->input->post('fecha'));
+					  	  'fecha'=>$this->input->post('fdebate'));
 			$resultado = $this->dictamenModel->registrardictamen($data);
 			header('Content-Type: application/json');
 			echo json_encode(array("result"=>$resultado));
@@ -77,13 +85,18 @@ class Dictamen extends CI_Controller{
 		$this->form_validation->set_rules("codigo", "Código", "required");
 		$this->form_validation->set_rules("sumilla", "Sumilla", "required");
 		$this->form_validation->set_rules("estado", "Estado", "required");
-		$this->form_validation->set_rules("comisiones[]", "Comisiones o Comisión", "required");
+		//$this->form_validation->set_rules("comisiones[]", "Comisiones o Comisión", "required");
         $this->form_validation->set_rules("tipo","Tipo","required");
-        $this->form_validation->set_rules("fecha","fecha de debate","required");
+        $this->form_validation->set_rules("fdebate","fecha de debate","required");
 
 		if ($this->form_validation->run() == FALSE)
         {
-            $this->actualizardictamen();
+			$tdictamen = $this->dictamenModel->tipodictamenes();
+			$comisiones = $this->comisionModel->getComisiones();
+			$estados = $this->dictamenModel->getEstados();
+
+			$data = array('tdictamen'=>$tdictamen,'comisiones'=>$comisiones,'estados'=>$estados);
+			$this->load->view('relatoria/anadirdictamen',$data);
         }
 		else
 		{
@@ -94,7 +107,7 @@ class Dictamen extends CI_Controller{
 						  'estado' => $this->input->post('estado'),
 						  'comisiones' => $this->input->post('comisiones'),
 					  	  'tipo'=>$this->input->post('tipo'),
-					  	  'fecha'=>$this->input->post('fecha'));
+					  	  'fecha'=>$this->input->post('fdebate'));
 
 			$resultado = $this->dictamenModel->actualizardictamen($data);
 			header('Content-Type: application/json');

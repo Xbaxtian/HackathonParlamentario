@@ -26,6 +26,7 @@ $(document).ready(function(){
 
     $('.send-form').click(function(){
             var form = $("#form-validado");
+            console.log("cdvsdbsdbsd")
             $.post(form.attr('action'), form.serialize(), function(data){
                 if(data.result == "success"){
                     location.reload();

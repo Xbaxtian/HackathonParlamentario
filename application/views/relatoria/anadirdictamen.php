@@ -9,11 +9,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $direccion = " ";
 
     if(isset($resultado)){
-        $valueid = $resultado['id_dictamen'];
-        $titulo = $resultado['titulo'];
-        $codigo = $resultado['codigo'];
-        $sumilla = $resultado['sumilla'];
-        $fecha = $resultado['fec_debate'];
+        $valueid = $resultado[0]['id_dictamen'];
+        $titulo = $resultado[0]['titulo'];
+        $codigo = $resultado[0]['codigo'];
+        $sumilla = $resultado[0]['sumilla'];
+        $fecha = $resultado[0]['fec_debate'];
         $direccion = "dictamen/actualizar";
     }
     else{
@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $titulo = array('type'=>'text','class'=>'form-control','name'=>'titulo','placeholder'=>'Título','value'=>$titulo);
                 echo form_input($titulo);
                 ?>
+                <?php echo form_error('titulo','<div class="form-error">*', '</div>'); ?>
                 </div>
             </div>
             <br>
@@ -51,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $codigo = array('type'=>'text','class'=>'form-control','name'=>'codigo','placeholder'=>'Código','value'=>$codigo);
                 echo form_input($codigo);
                 ?>
+                <?php echo form_error('codigo','<div class="form-error">*', '</div>'); ?>
                 </div>
             </div>
             <br>
@@ -61,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $sumilla = array('type'=>'text','class'=>'form-control autoExpand','name'=>'sumilla','rows'=>5,'data-min-rows'=>5,'placeholder'=>'Sumilla','value'=>$sumilla);
                 echo form_textarea($sumilla);
                 ?>
+                <?php echo form_error('sumilla','<div class="form-error">*', '</div>'); ?>
                 </div>
             </div>
             <br>
@@ -69,12 +72,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h2><label for="">Comisiones Dictaminadoras</label></h2>
                 <h5>la wea de tus switch no se que hiciste</h5>
                 </div>
+                <?php echo form_error('comisiones','<div class="form-error">*', '</div>'); ?>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-6">
                     <h2><label for="">Tipo de dictámen</label></h2>
-                    <select class="form-control">
+                    <select class="form-control" name="tipo">
                         <option name="tipo" value="<?php if(isset($resultado)) {
                             echo $tipodictamen[0]['id_tipo_dictamen'];
                             }
@@ -82,7 +86,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 echo " ";
                             }?>"
                         ><?php if(isset($resultado)){
-                            echo $tipodictamen[0]['descripcion'];}
+                            echo $tipodictamen[0]['descripcion'];
+                            }
                             else{
                                 echo "Tipo de dictamen";
                             } ?></option>
@@ -98,14 +103,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             } ?>
                     </select>
                 </div>
+                <?php echo form_error('tipo','<div class="form-error">*', '</div>'); ?>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-6">
                     <h2><label for="">Estado</label></h2>
-                    <select class="form-control">
-                        <option name="tipo" value="<?php if(isset($resultado)){
-                            echo $estadodictamen[0]['id_tipo_dictamen'];
+                    <select class="form-control" name="estado">
+                        <option name="estado" value="<?php if(isset($resultado)){
+                            echo $estadodictamen[0]['id_estado'];
                         }
                         else{
                             echo " ";
@@ -128,6 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }?>
                     </select>
                 </div>
+                <?php echo form_error('estado','<div class="form-error">*', '</div>'); ?>
             </div>
             <br>
             <div class="row">
@@ -137,6 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $fechadebate = array('type'=>'date','class'=>'form-control','name'=>'fdebate','placeholder'=>'fecha de debate','value'=>$fecha);
                     echo form_input($fechadebate);
                     ?>
+                    <?php echo form_error('fdebate','<div class="form-error">*', '</div>'); ?>
                 </div>
             </div>
             <?php echo form_close(); ?>

@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</header>
 		<div class="container" id="principal-container">
-			<? $this->load->view($view)?>
+			<? $this->load->view($view,$data)?>
 		</div>
 <!--		<footer id="main-footer">
 			<div class="container-fuid">

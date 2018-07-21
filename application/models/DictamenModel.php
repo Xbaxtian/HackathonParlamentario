@@ -36,10 +36,19 @@ class DictamenModel extends CI_Model{
             return $result;
         }
     }
-
-    public function getDictamenid($id){
+    public function obtenertipo($id){
         $this->db->select('*');
         $this->db->from('tipo_dictamen');
+        $this->db->where('id_tipo_dictamen = '.$id);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
+    public function getDictamenid($id){
+        $this->db->select('*');
+        $this->db->from('dictamenes');
         $this->db->where('id_dictamen = '.$id);
         $query = $this->db->get();
         $result = $query->result_array();
@@ -48,6 +57,18 @@ class DictamenModel extends CI_Model{
         }
     }
 
+    public function obtenerestado($id){
+        $this->db->select('*');
+        $this->db->from('dictamenes d');
+        $this->db->join('estados e','d.id_estado = e.id_estado');
+        $this->db->where('d.id_dictamen = '.$id);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+
+    }
     public function registrardictamen($data){
 
         try{
@@ -72,7 +93,7 @@ class DictamenModel extends CI_Model{
 
          for ($i=0; $i < count($data['comisiones']) ; $i++) {
              $this->db->insert('dictamen_comision',
-                        array('id_comisiones'=>$data['comisiones'][$i]),
+                        array('id_comisiones'=>$data['comisiones'][$i],
                               'id_dictamen'=>$id[0]['id']));
          }
 
@@ -95,6 +116,7 @@ class DictamenModel extends CI_Model{
     }
 
     public function actualizardictamen($data){
+        try{
             $this->db->trans_begin();
             $this->db->set('id_tipo_dictamen',$data['tipo']);
             $this->db->set('codigo',$data['codigo']);
@@ -111,7 +133,7 @@ class DictamenModel extends CI_Model{
             if(isset($data['comisiones'])){
                 for ($i=0; $i < count($data['comisiones']) ; $i++) {
                     $this->db->insert('dictamen_comision',
-                               array('id_comisiones'=>$data['comisiones'][$i]),
+                               array('id_comisiones'=>$data['comisiones'][$i],
                                      'id_dictamen'=>$id[0]['id']));
                 }
             }

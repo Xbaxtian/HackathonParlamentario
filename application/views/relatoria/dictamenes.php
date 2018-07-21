@@ -22,12 +22,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </thead>
                 <tbody>
                     <?php
-                    if(isset($resultado)){
-                    for ($i=0; $i < count($resultado) ; $i++) { ?>
+                    if(isset($dictamenes)){
+                    for ($i=0; $i < count($dictamenes) ; $i++) { ?>
                     <tr>
-                        <td>Codigo:<?php echo $resultado[$i]['codigo']; ?></td>
-                        <td>Titulo:<?php echo $resultado[$i]['titulo']?></td>
-                        <td><button class="btn puente" href="dictamen/actualizardictamen" data-id="<?php echo $resultado[$i]['id_dictamen']?>">Editar</button></td>
+                        <td>Codigo:<?php echo $dictamenes[$i]['codigo']; ?></td>
+                        <td>Titulo:<?php echo $dictamenes[$i]['titulo']?></td>
+                        <td><button class="btn puente" href="<?php echo base_url()?>dictamen/actualizardictamen" data-id="<?php echo $dictamenes[$i]['id_dictamen']?>">Editar</button></td>
                         <td><button class="btn">Plantilla</button></td>
                     </tr>
                     <?php }
