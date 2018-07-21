@@ -23,9 +23,12 @@ class Web extends CI_Controller{
 		$this->load->view('layout',$dataView);
 	}
 
+<<<<<<< HEAD
 	public function suscripcion(){
 		$this->load->view("web/suscripcion");
 	}
+=======
+>>>>>>> 7913b485d63a6e80794d0c9afc10cdfebb5be423
 }
 
 

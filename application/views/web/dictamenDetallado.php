@@ -30,7 +30,7 @@
             <label class="col-12"><b>FECHA DE DEBATE:</b></label>
         </div>
         <div class="card">
-            <label class="col-12 py-2" align="center">12/12/1999</label>
+            <label class="col-12 py-2" style="font-size:20px" align="center"><b>12/12/1999</b></label>
         </div>
         <br>
         <div class="row" align="center">
