@@ -14,3 +14,9 @@
 .home-link:hover{
 	text-decoration: none;
 }
+
+/*FOOTER*/
+
+#main-footer{
+	background-color: red;
+}
