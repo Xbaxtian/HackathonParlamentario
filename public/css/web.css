@@ -1,5 +1,8 @@
-
-
+/*Tarjetas principales*/
+.tarjeta{
+	border-top: #ed1d24 solid 5px !important;
+	box-shadow: 2px 2px 5px #999;
+}
 
 /*TABLERO DICTAMENES*/
 #tablero{
@@ -8,4 +11,40 @@
 	height:60vh;
 	font-size: 12px;
 	background-color: #E8E8E9;
+}
+
+
+/*valoracion*/
+.clasificacion input[type="radio"] {
+  display: none;
+}
+
+.clasificacion label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 40px;
+}
+
+.clasificacion label:hover,
+label:hover ~ label {
+  color: gold;
+}
+
+.clasificacion input[type="radio"]:checked ~ label {
+  color: gold;
+}
+
+/*botones*/
+
+.btn-shadow{
+	box-shadow: 2px 2px 5px #999;
+}
+
+.btn-red{
+	background-color: #ed1d24;
+	color: white;
 }
