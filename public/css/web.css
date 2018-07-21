@@ -1,0 +1,11 @@
+
+
+
+/*TABLERO DICTAMENES*/
+#tablero{
+	display: block;
+	overflow: auto;
+	height:60vh;
+	font-size: 12px;
+	background-color: #E8E8E9;
+}
