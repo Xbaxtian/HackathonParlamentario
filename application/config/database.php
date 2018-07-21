@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'db-instance.crkeb28xod4b.sa-east-1.rds.amazonaws.com',
 	'username' => 'root',
-	'password' => '',
-	'database' => '',
+	'password' => 'hackathon-parlamentario',
+	'database' => 'hackathon',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

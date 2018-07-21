@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -7,7 +11,7 @@
 		<!--Bootstrap.css-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 		<!--JQuery-->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 		<!--Popper.js-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<!--Bootstrap.js-->
@@ -25,7 +29,7 @@
 		<div class="container" id="principal-container">
 			<? $this->load->view($view)?>
 		</div>
-		<footer id="main-footer">
+<!--		<footer id="main-footer">
 			<div class="container-fuid">
 				<div class="row">
 					<div class="col-sm-12 col-md-6 text-right links-footer">
@@ -36,10 +40,11 @@
 				</div>
 				<div class="row">
 					<div class="col-auto mx-auto">
-						Layot - xbaxtian
+						Layout - xbaxtian
 					</div>
 				</div>
 			</div>
-		</footer>
+		</footer> -->
+		<script src="<?php echo base_url()?>public/js/validations.js"></script>
 	</body>
 </html>
