@@ -14,7 +14,52 @@
 			</div>
 			<div class="form-group">
 				<label for="preferencias"><b>Preferencias</b></label>
-				<input type="email" class="form-control" id="preferencias" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
+				<div class="card" id="card-comisiones">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-8">Comision</div>
+							<label class="switch">
+								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
