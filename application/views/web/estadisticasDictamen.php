@@ -15,6 +15,16 @@
 	</ul>
 	<div class="row" id="grafico">
 		<div class="col-12">
+			<form class="row" id="form-srch" autocomplete="off">
+				<div class="input-group col-auto mx-auto my-3">
+			        <input class="form-control py-2" type="search" name=algo value="" placeholder="Busca tu region..." id="example-search-input">
+					<span class="input-group-append">
+		                <button class="btn btn-outline-dark" type="button">
+		                    <i class="fa fa-search"></i>
+		                </button>
+		            </span>
+			    </div>
+			</form>
 			<div class="car mb-3 tarjeta">
 				<div class="card-body">
 					<div class="row">
@@ -67,6 +77,7 @@
 	$(document).ready(function(){
 		$.post("<?= base_url()?>web/enviarpuntuaciones",{"idObj":codigo},function(data){
 			var ctx = document.getElementById("myChart").getContext('2d');
+			console.log(data);
 			var djson = {
 				type: 'pie',
 				data: {
@@ -96,7 +107,7 @@
 				}
 			}
 			for(var i in data.puntuaciones){
-				var aux = data.puntuaciones[i].calificacion;
+				var aux = data.puntuaciones[i].calificacion-1;
 				djson.data.datasets[0].data[aux] =  data.puntuaciones[i].cantidad;
 			}
 			var myChart = new Chart(ctx, djson);
