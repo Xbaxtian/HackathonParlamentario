@@ -35,7 +35,7 @@ class Web extends CI_Controller{
     	echo json_encode( $comisiones );
 	}
 
-	public function recibirdatos(){
+	public function recibircalificacion(){
 
 		$this->form_validation->set_rules("dni", "DNI", "required");
 
@@ -65,6 +65,31 @@ class Web extends CI_Controller{
 		$data = array('resultado'=>$resultado,'puntuaciones'=>$puntiaciones);
 		header('Content-Type: application/json');
     	echo json_encode( $data );
+	}
+
+	public function recibirsuscripcion(){
+
+
+		$this->form_validation->set_rules("email", "Email", "required");
+
+
+		if ($this->form_validation->run() == FALSE)
+        {
+			//$this->load->view('relatoria/anadirdictamen',$data);
+		}
+		else
+		{
+			$data = array('dni' => $this->input->post("nombre"),
+						  'codigo' => $this->input->post("apellidos"),
+						  'comentario' => $this->input->post('email'),
+					  	  'calificacion'=>$this->input->post('dni')
+					      'telefono'=>$this->input->post('telefono')
+					  	  'comisiones'=> $this->input->post('comisiones'));
+
+			$resultado = $this->comisionModel->registrarsuscribcion($data);
+			header('Content-Type: application/json');
+			echo json_encode(array("result"=>$resultado));
+		}
 	}
 
 

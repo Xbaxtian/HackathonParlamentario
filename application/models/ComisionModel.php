@@ -74,4 +74,49 @@ class ComisionModel extends CI_Model{
 
     }
 
+    public function registrarsuscribcion($data){
+        try{
+
+              $this->db->trans_begin();
+              $this->db->insert('subscriptores',
+              array(
+                       'email' => $data['email'],
+                       'nombres'=>$data['nombres'],
+                       'apellidos'=>$data['apellidos'],
+                       'dni'=>$data['dni'],
+                       'telefono'=>$data['telefono']
+                   )
+              );
+
+              $this->db->select('max(id_subscriptor) as id');
+              $this->db->from('subscriptores');
+              $query = $this->db->get();
+              $id = $query->result_array();
+
+              if(isset($data['comisiones'])){
+                  for ($i=0; $i < count($data['comisiones']); $i++) {
+                      $this->db->insert('subscripciones',
+                            array('id_comsion'=>$data[$i]['comisiones'],
+                                    'id_subscriptor'=>$id[0]['id'])
+                        );
+                    }
+                }
+
+             if ($this->db->trans_status() === FALSE)
+             {
+                 $this->db->trans_rollback();
+                 return "error";
+             }
+             else
+             {
+                 $this->db->trans_commit();
+                 return "success";
+             }
+           }
+           catch (Exception $e) {
+
+              return "error";
+           }
+    }
+
 }
