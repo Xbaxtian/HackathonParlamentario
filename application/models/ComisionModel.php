@@ -141,7 +141,8 @@ class ComisionModel extends CI_Model{
 					 $mail->Subject = 'PHPMailer SMTP test';
 					 //Read an HTML message body from an external file, convert referenced images to embedded,
 					 //convert HTML into a basic plain-text alternative body
-					 $mail->Body = "Te odio miserable bastardo Uwu";
+					 $mail->Body = "Gracias por la suscripcion, le llegaran correos electronicos cada vez que una ley de su interes vaya a ser debatida
+					 http://hackathonparlamentario.mybluemix.net/";
 					 //Replace the plain text body with one created manually
 					 $mail->AltBody = 'This is a plain-text message body';
 

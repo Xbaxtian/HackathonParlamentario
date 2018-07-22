@@ -238,9 +238,9 @@
 				        }
 					}
 				}
-				for(var i in data){
-					var aux = data[i].calificacion-1;
-					djson.data.datasets[0].data[aux] =  data[i].cantidad;
+				for(var i in data[1]){
+					var aux = data[1][i].calificacion-1;
+					djson.data.datasets[0].data[aux] =  data[1][i].cantidad;
 				}
 				var myChart = new Chart(ctx, djson);
 				total = parseInt(djson.data.datasets[0].data[0]) +
