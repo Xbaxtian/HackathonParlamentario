@@ -16,7 +16,8 @@ class Web extends CI_Controller{
 	}
 
 	public function dictamenDetallado(){
-		$dataView = array("view"=>'web/dictamenDetallado',"data"=>array());
+		$codigo = $this->input->get('proyecto');
+		$dataView = array("view"=>'web/dictamenDetallado',"data"=>array("codigo"=>$codigo));
 		$this->load->view('layout',$dataView);
 	}
 

@@ -36,13 +36,13 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <textarea class="form-control" aria-label="With textarea" placeholder="Comente aquí . . ."></textarea>
+                    <textarea id="areacomentario" class="form-control" aria-label="With textarea" placeholder="Comente aquí . . ."></textarea>
                 </div>
             </div>
             <br>
             <div class="row" align="center">
                 <div class="col-12">
-                    <button class="btn btn-secondary" href="">Enviar</button>
+                    <button id="btnenviar" class="btn btn-secondary" href="">Enviar</button>
                 </div>
             </div>
         </div>
@@ -50,18 +50,35 @@
 </div>
 
 <script>
+    var puntaje;
+    var codigo = "<?= $codigo?>";
+
     $("#ranking input").click(function(){
         var val = $(this).attr("calificacion");
+        puntaje = $(this).attr("value");
         console.log(val);
+        console.log(puntaje);
         $("#ranking_valor").html(val);
     });
 </script>
 
 <script>
+    $("#btnenviar").click(function(){
+        console.log($("#areacomentario").val());
+        $.post("ruta",{"codigo": codigo},function(data){
+            if(data.result === "success"){
+                windows.location.href = "<?= base_url()?>dictamen/estadisticasDictamen";
+            }
+        });
+    });
+</script>
+
+<script>
     $(document).ready(function(){
-        $.post("<?= base_url()?>dictamen/obtenerdictamen",{"idObj":"RF9-685"},function(data){
-            console.log(data);
+        $.post("<?= base_url()?>dictamen/obtenerdictamen",{"idObj":codigo},function(data){
+            console.log(codigo);
             var aux = '';
+            //codigo = data.resultado[0].codigo;
             aux =   '<div class="row">\
                     <label class="col-12"><b>SUMILLA:</b></label>\
                     </div>\
@@ -74,7 +91,7 @@
                     <label class="col-12"><b>PROPUESTA POR:</b></label>\
                     </div>\
                     <div class="card">\
-                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].id_usuario+'</label>\
+                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].apellidos+'</label>\
                     </div>\
                     <br>';
             $("#cuerpo").append(aux);
@@ -82,7 +99,7 @@
                     <label class="col-12"><b>GRUPO PARLAMENTARIO:</b></label>\
                     </div>\
                     <div class="card">\
-                    <label class="col-12 mx-auto py-2" align="justified">'+"PODER EJECUTIVO"+'</label>\
+                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].bancada+'</label>\
                     </div>\
                     <br>';
             $("#cuerpo").append(aux);
