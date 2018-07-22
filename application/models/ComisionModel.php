@@ -23,7 +23,7 @@ class ComisionModel extends CI_Model{
         $this->db->from('dictamenes d');
         $this->db->join('dictamen_comision dc','d.id_dictamen = dc.id_dictamen');
         $this->db->join('comisiones c','dc.id_comision = c.id_comision');
-        $this->db->where('d.codigo = '.$id);
+        $this->db->where(array('d.codigo'=>$id));
         $query = $this->db->get();
         $result = $query->result_array();
         if(count($result)>0){

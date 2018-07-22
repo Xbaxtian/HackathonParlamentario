@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tr>
                         <td>Codigo:<?php echo $dictamenes[$i]['codigo']; ?></td>
                         <td>Titulo:<?php echo $dictamenes[$i]['titulo']?></td>
-                        <td><button class="btn puente" href="<?php echo base_url()?>dictamen/obtenerdictamen" data-id="<?php echo $dictamenes[$i]['id_dictamen']?>">Editar</button></td>
+                        <td><button class="btn puente" href="<?php echo base_url()?>dictamen/obtenerdictamen" data-id="<?php echo $dictamenes[$i]['codigo']?>">Editar</button></td>
                         <td><button class="btn">Plantilla</button></td>
                     </tr>
                     <?php }
