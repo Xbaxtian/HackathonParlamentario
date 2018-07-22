@@ -17,7 +17,7 @@
 		<div class="col-12">
 			<form class="row" id="form-srch" autocomplete="off">
 				<div class="input-group col-auto mx-auto my-3">
-			        <input class="form-control py-2" type="search" name=algo value="" placeholder="Busca tu region..." id="example-search-input">
+			        <input class="form-control py-2" type="search" value="" placeholder="Busca tu region..." id="example-search-input">
 					<span class="input-group-append">
 		                <button class="btn btn-outline-dark" type="button">
 		                    <i class="fa fa-search"></i>
@@ -70,6 +70,7 @@
 
 <script>
 	var codigo = "<?= $codigo?>";
+	var id;
 	var porcentaje;
 	var total;
 	var inc = 10;
@@ -186,4 +187,61 @@
 		$('#tab2').addClass(['active']);
 	});
 
+</script>
+
+<script>
+	$(document).ready(function() {
+		$("#form-srch").submit(function(event) {
+			event.preventDefault();
+			console.log($("#example-search-input").val());
+			$.post("<?= base_url()?>web/filtrar", {"id": id, "algo": $("#example-search-input").val()}, function(data) {
+				var ctx = document.getElementById("myChart").getContext('2d');
+				$("#myChart").html('');
+				console.log(data);
+				var djson = {
+					type: 'pie',
+					data: {
+						labels: ["Muy malo", "Malo", "Regular", "Bueno", "Muy bueno"],
+						datasets: [{
+							data: 	[	0,
+										0,
+										0,
+										0,
+										0],
+							backgroundColor: [
+								'rgb(240, 72, 68)',//muy malo
+								'rgb(255, 168, 71)',//malo
+								'rgb(224, 222, 219)',//regular
+								'rgb(16, 120, 176)',//bueno
+								'rgb(33, 186, 92)'//muy bueno
+							]
+						}]
+					},
+					options: {
+						legend: {
+				            labels: {
+				                fontColor: 'black',
+								fontSize: 16
+				            }
+				        }
+					}
+				}
+				for(var i in data){
+					var aux = data[i].calificacion-1;
+					djson.data.datasets[0].data[aux] =  data[i].cantidad;
+				}
+				var myChart = new Chart(ctx, djson);
+				total = parseInt(djson.data.datasets[0].data[0]) +
+						parseInt(djson.data.datasets[0].data[1]) +
+						parseInt(djson.data.datasets[0].data[2]) +
+						parseInt(djson.data.datasets[0].data[3]) +
+						parseInt(djson.data.datasets[0].data[4]);
+				//console.log(total);
+				porcentaje = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+				//console.log(porcentaje);
+				$("#porc").html('<b>'+porcentaje+'%</b>');
+
+			});
+		});
+	});
 </script>
