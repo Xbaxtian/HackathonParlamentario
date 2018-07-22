@@ -95,10 +95,7 @@ class ComisionModel extends CI_Model{
 
               if(isset($data['comisiones'])){
                   for ($i=0; $i < count($data['comisiones']); $i++) {
-                      $this->db->insert('subscripciones',
-                            array('id_comsion'=>$data[$i]['comisiones'],
-                                    'id_subscriptor'=>$id[0]['id'])
-                        );
+                      $this->db->insert('subscripciones',array('id_comision'=>$data['comisiones'][$i],'id_subscriptor'=>$id[0]['id']));
                     }
                 }
 

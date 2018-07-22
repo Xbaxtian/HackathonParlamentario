@@ -1,9 +1,14 @@
 
 <section>
 	<div class="row">
-		<div class="col-auto mx-auto my-3">
-			<input type="text" class="form-control busca" placeholder="Buscar..">
-		</div>
+		<div class="input-group col-auto mx-auto my-3">
+	        <input class="form-control py-2" type="search" value="" placeholder="Buscar..." id="example-search-input">
+			<span class="input-group-append">
+                <button class="btn btn-outline-dark" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+	    </div>
 	</div>
 	<div class="row">
 		<div class="card tarjeta col-md-12 col-sm-10 mx-3 mb-3 py-1" id="tablero">

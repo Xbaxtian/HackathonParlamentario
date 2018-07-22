@@ -10,7 +10,7 @@
 		<form id="form-suscribcion" action="suscripcion">
 			<div class="form-group">
 				<label for="email"><b>Correo electrónico</b></label>
-				<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
+				<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
 			</div>
 			<div class="form-group">
 				<label for="preferencias"><b>Preferencias</b></label>
@@ -37,7 +37,7 @@
 				aux = '<div class="row align-items-center">\
 					<div class="col-8">'+data[i].descripcion+'</div>\
 					<label class="switch">\
-						<input class="form-check-input" type="checkbox" value="'+data[i].idcomision+'">\
+						<input class="form-check-input" type="checkbox" name="comisiones[]" value="'+data[i].id_comision+'">\
 						<span class="slider round"></span>\
 					</label>\
 				</div><hr>'
@@ -46,11 +46,16 @@
 		});
 	});
 	function suscribir(){
-		$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
-		$("#btn-suscribir").hide(0,function(){
-			$("button",$(this).parent()).removeClass('btn-secondary');
-			$("button",$(this).parent()).addClass('btn-red');
-			$("button",$(this).parent()).html('Aceptar');
+
+		$.post('web/recibirsuscripcion', $("#form-suscribcion").serialize(), function(data) {
+			if (data.result === "success") {
+				$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
+				$("#btn-suscribir").hide(0,function(){
+					$("button",$(this).parent()).removeClass('btn-secondary');
+					$("button",$(this).parent()).addClass('btn-red');
+					$("button",$(this).parent()).html('Aceptar');
+				});
+			}
 		});
 	}
 </script>

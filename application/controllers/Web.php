@@ -69,27 +69,17 @@ class Web extends CI_Controller{
 
 	public function recibirsuscripcion(){
 
+		$data = array('nombres' => $this->input->post("nombre"),
+					  'apellidos' => $this->input->post("apellidos"),
+					  'email' => $this->input->post('email'),
+				  	  'dni'=>$this->input->post('dni'),
+				      'telefono'=>$this->input->post('telefono'),
+				  	  'comisiones'=> $this->input->post('comisiones'));
 
-		$this->form_validation->set_rules("email", "Email", "required");
+		$resultado = $this->comisionModel->registrarsuscribcion($data);
+		header('Content-Type: application/json');
+		echo json_encode(array("result"=>$resultado));
 
-
-		if ($this->form_validation->run() == FALSE)
-        {
-			//$this->load->view('relatoria/anadirdictamen',$data);
-		}
-		else
-		{
-			$data = array('nombres' => $this->input->post("nombre"),
-						  'apellidos' => $this->input->post("apellidos"),
-						  'email' => $this->input->post('email'),
-					  	  'dni'=>$this->input->post('dni')
-					      'telefono'=>$this->input->post('telefono')
-					  	  'comisiones'=> $this->input->post('comisiones'));
-
-			$resultado = $this->comisionModel->registrarsuscribcion($data);
-			header('Content-Type: application/json');
-			echo json_encode(array("result"=>$resultado));
-		}
 	}
 
 
