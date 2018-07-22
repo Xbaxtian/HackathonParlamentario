@@ -6,6 +6,8 @@ class Web extends CI_Controller{
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('comisionModel');
+		$this->load->model('dictamenModel');
 	}
 
 	public function index(){
@@ -25,6 +27,12 @@ class Web extends CI_Controller{
 
 	public function suscripcion(){
 		$this->load->view("web/suscripcion");
+	}
+
+	public function listarcomisiones(){ // LISTA DE comisiones
+		$comisiones = $this->comisionModel->getComisiones();
+		header('Content-Type: application/json');
+    	echo json_encode( $comisiones );
 	}
 
 	public function recibirdatos(){

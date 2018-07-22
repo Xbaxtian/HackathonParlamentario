@@ -8,7 +8,7 @@ class ComisionModel extends CI_Model{
     }
 
     public function getComisiones(){
-            $this->db->select('*');
+            $this->db->select('id_comision,descripcion');
             $this->db->from('comisiones');
             $this->db->where('activo = 1');
             $query = $this->db->get();
@@ -49,7 +49,7 @@ class ComisionModel extends CI_Model{
 
           $this->db->trans_begin();
           $this->db->insert('comentarios',
-          array(   'id_dictamen' => $data['codigo']),
+          array(   'id_dictamen' => $data['codigo'],
                    'dni'=>$data['dni'],
                    'comentario'=>$data['comentario'],
                    'calificacion'=>$data['calificacion']
