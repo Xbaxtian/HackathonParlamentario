@@ -8,6 +8,7 @@ class Web extends CI_Controller{
 		parent::__construct();
 		$this->load->model('comisionModel');
 		$this->load->model('dictamenModel');
+		$this->load->model('loginModel');
 	}
 
 	public function index(){
@@ -35,6 +36,36 @@ class Web extends CI_Controller{
 		$comisiones = $this->comisionModel->getComisiones();
 		header('Content-Type: application/json');
     	echo json_encode( $comisiones );
+	}
+
+	public function login(){
+
+		if (strlen($this->input->post('dni')) == 8 )
+        {
+			$data = array('dni' => $this->input->post('dni'));
+
+            $resultado = $this->loginModel->getUsuario($data);
+            $resultado = $resultado[0];
+            if($resultado != false){
+                $this->session->set_userdata($resultado);
+                $result = array("result"=>"success");
+    			header('Content-Type: application/json');
+    			echo json_encode($result);
+        	}
+			else
+			{
+				$data = array('dni' => $this->input->post('dni'));
+				$respuesta = $this->loginModel->ingresarvisitante($data)
+				$result = array("result"=>$respuesta);
+    			header('Content-Type: application/json');
+    			echo json_encode($result);
+			}
+        else
+        {
+			$result = array("result"=>"error");
+			header('Content-Type: application/json');
+			echo json_encode($result);
+        }
 	}
 
 	public function recibircalificacion(){
@@ -100,7 +131,8 @@ class Web extends CI_Controller{
 	public function filtrar(){
 		$token = $this->input->post("algo");
 		$id = $this->input->post("id");
-		$busquedar = $this->dictamenModel->busquedaregion($token,$id);
+		$lugar = $this->dictamenModel->lugar($token);
+		$busquedar = array($lugar[0],$this->dictamenModel->busquedaregion($token,$id));
 		header('Content-Type: application/json');
 		echo json_encode($busquedar);
 	}

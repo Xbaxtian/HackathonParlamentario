@@ -170,13 +170,25 @@ class DictamenModel extends CI_Model{
     }
 
     public function busquedaregion($token,$id){
-        $this->db->select('c.calificacion,count(calificacion) as cantidad');
+        $this->db->select('c.calificacion,count(calificacion) as cantidad,');
         $this->db->from('comentarios c');
         $this->db->join('visitantes  v ', 'c.dni = v.dni');
         $this->db->join('regiones r','v.id_region = r.id_region');
         $this->db->where('c.id_dictamen',(integer)$id);
         $this->db->like('r.nombre',ucfirst($token));
         $this->db->group_by("c.calificacion");
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
+
+    public function lugar($token){
+        $this->db->select('nombre as lugar');
+        $this->db->from('regiones');
+        $this->db->like('nombre',ucfirst($token));
 
         $query = $this->db->get();
         $result = $query->result_array();
