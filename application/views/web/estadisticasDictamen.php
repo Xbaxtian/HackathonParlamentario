@@ -19,7 +19,7 @@
 				<div class="input-group col-auto mx-auto my-3">
 			        <input class="form-control py-2" type="search" value="" placeholder="Busca tu region..." id="example-search-input">
 					<span class="input-group-append">
-		                <button class="btn btn-outline-dark" type="button">
+		                <button class="btn btn-outline-dark" type="button" onclick="filtrar()">
 		                    <i class="fa fa-search"></i>
 		                </button>
 		            </span>
@@ -33,10 +33,15 @@
 						</div>
 					</div>
 					<div class="row mx-auto">
-						<div class="col-auto mx-auto">
+						<div class="col-12 mx-auto">
 							<ul class="list-group m-2">
-  								<li class="aprueba" align="center">
-									<p>Del total lo aprueba el <p style="font-size: 30px" id="porc"></p></p>
+  								<li class="list-group-item list-group-item-action list-group-item-primary" align="center">
+									<p align="center">Aprueba: <span style="font-size: 30px" id="porca"></span></p>
+								</li>
+							</ul>
+							<ul class="list-group m-2">
+  								<li class="list-group-item list-group-item-action list-group-item-danger" align="center">
+									<p align="center">Desaprueba: <span style="font-size: 30px" id="porcb"></span></p>
 								</li>
 							</ul>
 						</div>
@@ -71,7 +76,8 @@
 <script>
 	var codigo = "<?= $codigo?>";
 	var id;
-	var porcentaje;
+	var porcentajea, porcentajeb, porcentajec;
+	var porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5;
 	var total;
 	var inc = 10;
 
@@ -118,9 +124,17 @@
 					parseInt(djson.data.datasets[0].data[3]) +
 					parseInt(djson.data.datasets[0].data[4]);
 			//console.log(total);
-			porcentaje = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+			porcentajea = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+			porcentajeb = Math.round(100*(parseInt(djson.data.datasets[0].data[1]) + parseInt(djson.data.datasets[0].data[2]))/ total);
+			porcentajec = Math.round(100*(parseInt(djson.data.datasets[0].data[3]))/ total);
+			porcentaje1 = Math.round(100*(parseInt(djson.data.datasets[0].data[1]))/ total);
+			porcentaje2 = Math.round(100*(parseInt(djson.data.datasets[0].data[2]))/ total);
+			porcentaje3 = Math.round(100*(parseInt(djson.data.datasets[0].data[3]))/ total);
+			porcentaje4 = Math.round(100*(parseInt(djson.data.datasets[0].data[4]))/ total);
+			porcentaje5 = Math.round(100*(parseInt(djson.data.datasets[0].data[5]))/ total);
 			//console.log(porcentaje);
-			$("#porc").html('<b>'+porcentaje+'%</b>');
+			$("#porca").html('<b>'+porcentajea+'%</b>');
+			$("#porcb").html('<b>'+porcentajeb+'%</b>');
 		});
 	});
 </script>
@@ -237,11 +251,23 @@
 						parseInt(djson.data.datasets[0].data[3]) +
 						parseInt(djson.data.datasets[0].data[4]);
 				//console.log(total);
-				porcentaje = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+				porcentajea = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+				porcentajeb = Math.round(100*(parseInt(djson.data.datasets[0].data[1]) + parseInt(djson.data.datasets[0].data[2]))/ total);
+				porcentajec = Math.round(100*(parseInt(djson.data.datasets[0].data[3]))/ total);
+				porcentaje1 = Math.round(100*(parseInt(djson.data.datasets[0].data[1]))/ total);
+				porcentaje2 = Math.round(100*(parseInt(djson.data.datasets[0].data[2]))/ total);
+				porcentaje3 = Math.round(100*(parseInt(djson.data.datasets[0].data[3]))/ total);
+				porcentaje4 = Math.round(100*(parseInt(djson.data.datasets[0].data[4]))/ total);
+				porcentaje5 = Math.round(100*(parseInt(djson.data.datasets[0].data[5]))/ total);
 				//console.log(porcentaje);
-				$("#porc").html('<b>'+porcentaje+'%</b>');
+				$("#porca").html('<b>'+porcentajea+'%</b>');
+				$("#porcb").html('<b>'+porcentajeb+'%</b>');
 
 			});
 		});
 	});
+
+	function filtrar(){
+		$("#form-srch").submit();
+	}
 </script>
