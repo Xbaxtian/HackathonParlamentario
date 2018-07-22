@@ -55,11 +55,11 @@ class Dictamen extends CI_Controller{
 		$id = $this->input->post('idObj');
 
 		$resultado = $this->dictamenModel->getDictamenid($id);
-		$dcomisiones = $this->comisionModel->getcomisiondictamen($id); // comisiones
-		$tipodictamen = $this->dictamenModel->obtenertipo($resultado[0]['id_tipo_dictamen']);
-		$estadodictamen = $this->dictamenModel->obtenerestado($resultado[0]['id_dictamen']);
+	    //	$dcomisiones = $this->comisionModel->getcomisiondictamen($id); // comisiones
+		// $tipodictamen = $this->dictamenModel->obtenertipo($resultado[0]['id_tipo_dictamen']);
+		// $estadodictamen = $this->dictamenModel->obtenerestado($resultado[0]['id_dictamen']);
 
-		$data = array('resultado'=>$resultado,'dcomisiones' => $dcomisiones,'tipodictamen'=>$tipodictamen,'estadodictamen'=>$estadodictamen);
+		$data = array('resultado'=>$resultado);
 		header('Content-Type: application/json');
     	echo json_encode( $data );
 
