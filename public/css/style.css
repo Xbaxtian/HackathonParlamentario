@@ -1,4 +1,7 @@
 
+body{
+	font-family: 'Roboto', sans-serif;
+}
 
 /*HEADER*/
 
@@ -7,7 +10,7 @@
 }
 
 .home-link{
-	font-size: 80px !important;
+	font-size: 70px !important;
 	font-weight: normal !important;
 	color: white !important;
 }
