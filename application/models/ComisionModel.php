@@ -111,7 +111,41 @@ class ComisionModel extends CI_Model{
              else
              {
                  $this->db->trans_commit();
-                 return "success";
+				 if($data['email']!=''){
+					 $this->load->library("phpmailer_library");
+			         $mail = $this->phpmailer_library->load();
+					 $mail->isSMTP();
+					 //Enable SMTP debugging
+					 // 0 = off (for production use)
+					 // 1 = client messages
+					 // 2 = client and server messages
+					 $mail->SMTPDebug = 2;
+					 //Set the hostname of the mail server
+					 $mail->Host = 'ec2-18-231-86-126.sa-east-1.compute.amazonaws.com';
+					 //Set the SMTP port number - likely to be 25, 465 or 587
+					 $mail->Port = 25;
+					 //Whether to use SMTP authentication
+					 $mail->SMTPAuth = false;
+					 //6546565465
+					 $mail->setFrom('dieg0407@hotmail.com', 'First Last');
+					 //Set who the message is to be sent to
+					 $mail->addAddress($data['email'], 'John Doe');
+					 //Set the subject line
+					 $mail->Subject = 'PHPMailer SMTP test';
+					 //Read an HTML message body from an external file, convert referenced images to embedded,
+					 //convert HTML into a basic plain-text alternative body
+					 $mail->Body = "Te odio miserable bastardo Uwu";
+					 //Replace the plain text body with one created manually
+					 $mail->AltBody = 'This is a plain-text message body';
+
+					 //send the message, check for errors
+					 if (!$mail->send()) {
+					     return 'error';
+					 } else {
+					     return 'success';
+					 }
+				 }
+
              }
            }
            catch (Exception $e) {

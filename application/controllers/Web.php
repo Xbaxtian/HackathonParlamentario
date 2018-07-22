@@ -72,7 +72,7 @@ class Web extends CI_Controller{
 	}
 
 	public function recibirsuscripcion(){
-
+		header('Content-Type: application/json');
 		$data = array('nombres' => $this->input->post("nombre"),
 					  'apellidos' => $this->input->post("apellidos"),
 					  'email' => $this->input->post('email'),
@@ -81,8 +81,12 @@ class Web extends CI_Controller{
 				  	  'comisiones'=> $this->input->post('comisiones'));
 
 		$resultado = $this->comisionModel->registrarsuscribcion($data);
-		header('Content-Type: application/json');
-		echo json_encode(array("result"=>$resultado));
+		if(!isset($resultado) || $resultado=="error"){
+			echo json_encode(array("result"=>"error"));
+		}
+		else{
+			echo json_encode(array("result"=>"success"));
+		}
 
 	}
 

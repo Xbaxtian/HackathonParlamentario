@@ -7,7 +7,7 @@
 	</div>
 	<div class="modal-body tarjeta">
 		<p>Seleccione sus preferencias y las leyes le llegaran a su correo completamente GRATIS</p>
-		<form id="form-suscribcion" action="suscripcion">
+		<form id="form-suscribcion">
 			<div class="form-group">
 				<label for="email"><b>Correo electrónico</b></label>
 				<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
@@ -48,14 +48,14 @@
 	function suscribir(){
 
 		$.post('web/recibirsuscripcion', $("#form-suscribcion").serialize(), function(data) {
-			if (data.result === "success") {
-				$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
-				$("#btn-suscribir").hide(0,function(){
-					$("button",$(this).parent()).removeClass('btn-secondary');
-					$("button",$(this).parent()).addClass('btn-red');
-					$("button",$(this).parent()).html('Aceptar');
-				});
-			}
+
+			$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
+			$("#btn-suscribir").hide(0,function(){
+				$("button",$(this).parent()).removeClass('btn-secondary');
+				$("button",$(this).parent()).addClass('btn-red');
+				$("button",$(this).parent()).html('Aceptar');
+			});
+
 		});
 	}
 </script>
