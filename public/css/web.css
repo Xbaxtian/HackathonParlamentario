@@ -194,3 +194,14 @@ input:checked + .slider:before {
 }
 
 /*********************************/
+
+.cabecera {
+	background-color: black;
+	color : white;
+}
+
+.item:hover{
+	cursor: pointer;
+	color: white;
+	background-color: gray;
+}
