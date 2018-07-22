@@ -32,7 +32,7 @@
 				aux = '<div class="row item align-items-center py-2">\
 					<div class="col-2"><span class="align-middle">'+data[i].codigo+'</span></div>\
 					<div class="col-5">'+data[i].titulo+'</div>\
-					<div class="col-3">'+data[i].fec_debate+'</div>\
+					<div class="col-3">'+data[i].fecha+'</div>\
 					<button class="btn btn-dark ml-2"><i class="fas fa-chart-pie"></i></button>\
 				</div>';
 				$("#tablero").append(aux);
