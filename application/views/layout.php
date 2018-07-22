@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header id="main-header">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-auto mx-auto"><a href="<?= base_url()?>" class="home-link px-sm-5">Leyes</a></div>
+					<div class="col-auto mx-auto"><a href="<?= base_url()?>" class="home-link px-sm-5">Hackathon</a></div>
 				</div>
 			</div>
 		</header>
