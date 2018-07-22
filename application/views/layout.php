@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>Layout</title>
+		<title>Hackathon</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<?=base_url()?>public/css/style.css">
 		<!--Web css-->

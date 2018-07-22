@@ -147,7 +147,10 @@
 			console.log(data);
 			var aux;
 			for(var i = 0; i<inc ; i++){
-				if(data.comentarios[i].comentario!==""){
+				if(data.comentarios[i] === undefined){
+					break;
+				}
+				if(data.comentarios[i].comentario!=""){
 					aux = 	'<div class="row-auto mx-auto mb-2" >\
 							<div class="card comentario">\
 							<div class="card-body" align="justify">'+

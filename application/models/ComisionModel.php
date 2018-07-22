@@ -59,7 +59,11 @@ class ComisionModel extends CI_Model{
 
     public function registrarpuntuacion($data){
 
-		$query = $this->db->get_where('comentarios',array('dni'=>$data['dni']));
+		$query = $this->db->select('*')
+							->from('comentarios c')
+							->join('dictamenes d','c.id_dictamen = d.id_dictamen','inner')
+							->where(array('c.dni'=>$data['dni'],'d.codigo'=>$data['codigo']))
+							->get();
 		$aux = $query->result_array();
 		if(count($aux)>0){
 			return "error";
