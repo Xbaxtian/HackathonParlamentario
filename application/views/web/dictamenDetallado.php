@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <textarea id="areacomentario" class="form-control" aria-label="With textarea" placeholder="Comente aquí . . ."></textarea>
+                    <input type="textarea" name="comentario" id="areacomentario" class="form-control" aria-label="With textarea" value="" placeholder="Comente aquí . . .">
                 </div>
             </div>
             <br>
@@ -50,8 +50,9 @@
 </div>
 
 <script>
-    var puntaje;
+    var puntaje = 3;
     var codigo = "<?= $codigo?>";
+	var id;
 
     $("#ranking input").click(function(){
         var val = $(this).attr("calificacion");
@@ -64,10 +65,9 @@
 
 <script>
     $("#btnenviar").click(function(){
-        console.log($("#areacomentario").val());
-        $.post("ruta",{"codigo": codigo},function(data){
-            if(data.result === "success"){
-                windows.location.href = "<?= base_url()?>dictamen/estadisticasDictamen";
+        $.post("<?= base_url()?>web/recibircalificacion",{"codigo": id, "puntaje": puntaje, "comentario": $("#areacomentario").val()},function(data){
+            if(data.result == "success"){
+                window.location.href = "<?= base_url()?>estadisticas/?proyecto="+codigo;
             }
         });
     });
@@ -76,6 +76,7 @@
 <script>
     $(document).ready(function(){
         $.post("<?= base_url()?>dictamen/obtenerdictamen",{"idObj":codigo},function(data){
+			id = data.resultado[0].id_dictamen;
             $(".titulo").html('<b>'+data.resultado[0].titulo+'</b>');
 			var congresistas = ""
 			for(var i in data.resultado){

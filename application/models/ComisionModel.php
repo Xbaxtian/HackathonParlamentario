@@ -45,8 +45,6 @@ class ComisionModel extends CI_Model{
 
     public function registrarpuntuacion($data){
 
-    try{
-
           $this->db->trans_begin();
           $this->db->insert('comentarios',
           array(   'id_dictamen' => $data['codigo'],
@@ -56,21 +54,14 @@ class ComisionModel extends CI_Model{
                )
          );
 
-         if ($this->db->trans_status() === FALSE)
-         {
+         if ($this->db->trans_status() === FALSE){
              $this->db->trans_rollback();
              return "error";
          }
-         else
-         {
+         else{
              $this->db->trans_commit();
              return "success";
          }
-       }
-       catch (Exception $e) {
-
-          return "error";
-       }
 
     }
 

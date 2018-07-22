@@ -38,23 +38,14 @@ class Web extends CI_Controller{
 
 	public function recibircalificacion(){
 
-		$this->form_validation->set_rules("dni", "DNI", "required");
+		$data = array('dni' => 12345678,
+					  'codigo' => $this->input->post("codigo"),
+					  'comentario' => $this->input->post('comentario'),
+				  	  'calificacion'=>$this->input->post('puntaje'));
 
-		if ($this->form_validation->run() == FALSE)
-        {
-			//$this->load->view('relatoria/anadirdictamen',$data);
-		}
-		else
-		{
-			$data = array('dni' => $this->input->post("dni"),
-						  'codigo' => $this->input->post("codigo"),
-						  'comentario' => $this->input->post('comentario'),
-					  	  'calificacion'=>$this->input->post('calificacion'));
-
-			$resultado = $this->comisionModel->registrarpuntuacion($data);
-			header('Content-Type: application/json');
-			echo json_encode(array("result"=>$resultado));
-		}
+		$resultado = $this->comisionModel->registrarpuntuacion($data);
+		header('Content-Type: application/json');
+		echo json_encode(array("result"=>$resultado));
 	}
 
 	public function enviarpuntuaciones(){
