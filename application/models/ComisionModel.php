@@ -49,6 +49,7 @@ class ComisionModel extends CI_Model{
         $this->db->from('comentarios c');
         $this->db->join('dictamenes dc','c.id_dictamen = dc.id_dictamen');
         $this->db->where(array('dc.codigo'=>$id));
+		$this->db->order_by('c.id_comentario','DESC');
         $query = $this->db->get();
         $result = $query->result_array();
         if(count($result)>0){
@@ -58,25 +59,32 @@ class ComisionModel extends CI_Model{
 
     public function registrarpuntuacion($data){
 
-          $this->db->trans_begin();
-          $this->db->insert('comentarios',
-          array(   'id_dictamen' => $data['codigo'],
-                   'dni'=>$data['dni'],
-                   'comentario'=>$data['comentario'],
-                   'calificacion'=>$data['calificacion']
-               )
-         );
+		$query = $this->db->get_where('comentarios',array('dni'=>$data['dni']));
+		$aux = $query->result_array();
+		if(count($aux)>0){
+			return "error";
+		}
+		else{
+			$this->db->trans_begin();
+			$this->db->insert('comentarios',
+			array(   'id_dictamen' => $data['codigo'],
+			       'dni'=>$data['dni'],
+			       'comentario'=>$data['comentario'],
+			       'calificacion'=>$data['calificacion']
+			   )
+			);
 
-         if ($this->db->trans_status() === FALSE){
-             $this->db->trans_rollback();
-             return "error";
-         }
-         else{
-             $this->db->trans_commit();
-             return "success";
-         }
+			if ($this->db->trans_status() === FALSE){
+			 $this->db->trans_rollback();
+			 return "error";
+			}
+			else{
+			 $this->db->trans_commit();
+			 return "success";
+			}
+		}
 
-    }
+	}
 
     public function registrarsuscribcion($data){
         try{

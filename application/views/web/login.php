@@ -29,6 +29,14 @@
 				if(data.result === "success"){
 					$("#myModal").modal('hide');
 					dni = data.dni;
+					$.post("<?= base_url()?>web/recibircalificacion",{"dni": dni, "codigo": id, "puntaje": puntaje, "comentario": $("#areacomentario").val()},function(data){
+			            if(data.result == "success"){
+			                window.location.href = "<?= base_url()?>estadisticas/?proyecto="+codigo;
+			            }
+						else{
+							alert('Ya comento esta ley');
+						}
+			        });
 				}
 			});
 		});

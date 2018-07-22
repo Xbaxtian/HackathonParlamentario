@@ -49,8 +49,9 @@ class Web extends CI_Controller{
 			$data = array('dni' => $this->input->post('dni'));
 
             $resultado = $this->loginModel->getUsuario($data);
-            $resultado = $resultado[0];
-            if($resultado){
+
+            if(isset($resultado)){
+				$resultado = $resultado[0];
                 $this->session->set_userdata($resultado);
                 $result = array("result"=>"success","dni"=>$resultado['dni']);
     			header('Content-Type: application/json');

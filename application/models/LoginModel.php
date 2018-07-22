@@ -9,15 +9,15 @@ class LoginModel extends CI_Model{
 
     public function getUsuario($data){
         $this->db->select('*');
-        $this->db->from('usuarios u');
-        $this->db->where('u.dni ',$data['dni']);
+        $this->db->from('visitantes v');
+        $this->db->where('v.dni ',$data['dni']);
         $query = $this->db->get();
         $result = $query->result_array();
         if(count($result)>0){
             return $result;
         }
         else{
-            return false;
+            return null;
         }
     }
 

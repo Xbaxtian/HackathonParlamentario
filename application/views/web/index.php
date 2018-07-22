@@ -1,4 +1,4 @@
-
+<?$this->session->sess_destroy()?>
 <section>
 	<form class="row" id="form-srch" autocomplete="off">
 		<div class="input-group col-auto mx-auto my-3">
