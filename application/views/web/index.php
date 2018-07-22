@@ -4,7 +4,7 @@
 		<div class="input-group col-auto mx-auto my-3">
 	        <input class="form-control py-2" type="search" name=algo value="" placeholder="Buscar..." id="example-search-input">
 			<span class="input-group-append">
-                <button class="btn btn-outline-dark" type="button">
+                <button class="btn btn-outline-dark" type="button" onclick="buscar">
                     <i class="fa fa-search"></i>
                 </button>
             </span>
@@ -80,4 +80,7 @@
 			});
 		});
 	});
+	function buscar(){
+		$("#form-srch").submit();
+	}
 </script>

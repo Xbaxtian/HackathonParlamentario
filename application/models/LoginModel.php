@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Loginextends CI_Model{
+class LoginModel extends CI_Model{
 
     function __construct(){
         parent::__construct();
@@ -10,7 +10,7 @@ class Loginextends CI_Model{
     public function getUsuario($data){
         $this->db->select('*');
         $this->db->from('usuarios u');
-        $this->db->where('u.id_usuario ',$data['dni']);
+        $this->db->where('u.dni ',$data['dni']);
         $query = $this->db->get();
         $result = $query->result_array();
         if(count($result)>0){
@@ -23,16 +23,16 @@ class Loginextends CI_Model{
 
 
     public function ingresarvisitante($data){
-            try{
+        try{
 
-                $this->db->insert('visitantes', array('dni'=>$data['dni'],'id_region'=>14));
-                return "success";
+            $this->db->insert('visitantes', array('dni'=>$data['dni'],'id_region'=>14));
+            return "success";
 
-            }
-            catch (Exception $e) {
-                return "error";
-            }
+        }
+        catch (Exception $e) {
+            return "error";
         }
     }
+
 
 }

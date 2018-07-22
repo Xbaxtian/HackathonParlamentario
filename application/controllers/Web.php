@@ -38,6 +38,10 @@ class Web extends CI_Controller{
     	echo json_encode( $comisiones );
 	}
 
+	public function modallogin(){
+		$this->load->view("web/login");
+	}
+
 	public function login(){
 
 		if (strlen($this->input->post('dni')) == 8 )
@@ -46,20 +50,24 @@ class Web extends CI_Controller{
 
             $resultado = $this->loginModel->getUsuario($data);
             $resultado = $resultado[0];
-            if($resultado != false){
+            if($resultado){
                 $this->session->set_userdata($resultado);
-                $result = array("result"=>"success");
+                $result = array("result"=>"success","dni"=>$resultado['dni']);
     			header('Content-Type: application/json');
     			echo json_encode($result);
         	}
 			else
 			{
 				$data = array('dni' => $this->input->post('dni'));
-				$respuesta = $this->loginModel->ingresarvisitante($data)
-				$result = array("result"=>$respuesta);
+				$respuesta = $this->loginModel->ingresarvisitante($data);
+				$resultado = $this->loginModel->getUsuario($data);
+				$resultado = $resultado[0];
+				$this->session->set_userdata($resultado);
+				$result = array("result"=>$respuesta,"dni"=>$resultado['dni']);
     			header('Content-Type: application/json');
     			echo json_encode($result);
 			}
+		}
         else
         {
 			$result = array("result"=>"error");
@@ -70,7 +78,7 @@ class Web extends CI_Controller{
 
 	public function recibircalificacion(){
 
-		$data = array('dni' => 11111113,
+		$data = array('dni' => $this->input->post("dni"),
 					  'codigo' => $this->input->post("codigo"),
 					  'comentario' => $this->input->post('comentario'),
 				  	  'calificacion'=>$this->input->post('puntaje'));

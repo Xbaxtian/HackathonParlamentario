@@ -64,11 +64,22 @@
 </script>
 
 <script>
+	var dni = <?=$this->session->userdata('dni')?>;
+	console.log(dni);
     $("#btnenviar").click(function(){
-        $.post("<?= base_url()?>web/recibircalificacion",{"codigo": id, "puntaje": puntaje, "comentario": $("#areacomentario").val()},function(data){
+		if(dni === undefined){
+			$.post('<?=base_url()?>web/modallogin', function(data){
+				$("#myModal .modal-dialog").html(data);
+				$('#myModal').modal();
+			});
+		}
+        $.post("<?= base_url()?>web/recibircalificacion",{"dni": dni, "codigo": id, "puntaje": puntaje, "comentario": $("#areacomentario").val()},function(data){
             if(data.result == "success"){
                 window.location.href = "<?= base_url()?>estadisticas/?proyecto="+codigo;
             }
+			else{
+				alert('Ya comento esta ley');
+			}
         });
     });
 </script>
