@@ -168,4 +168,19 @@ class DictamenModel extends CI_Model{
             return $result;
         }
     }
+
+    public function busquedaregion($token){
+        $this->db->select('c.calificacion,count(calificacion)');
+        $this->db->from('comentarios c');
+        $this->db->join('visitantes  v ', 'c.dni = v.dni');
+        $this->db->join('regiones r','v.id_region = r.id_region');
+        $this->db->like('r.nombre',$token);
+        $this->db->group_by("c.calificacion");
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
 }
