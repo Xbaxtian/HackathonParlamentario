@@ -7,7 +7,7 @@
 	</div>
 	<div class="modal-body">
 		<p>Seleccione sus preferencias y las leyes le llegaran a su correo completamente GRATIS</p>
-		<form class="" action="suscripcion" method="post">
+		<form id="form-suscribcion" action="suscripcion">
 			<div class="form-group">
 				<label for="email"><b>Correo electrónico</b></label>
 				<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
@@ -16,48 +16,7 @@
 				<label for="preferencias"><b>Preferencias</b></label>
 				<div class="card" id="card-comisiones">
 					<div class="card-body">
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="" checked>
-								<span class="slider round"></span>
-							</label>
-						</div>
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="">
-								<span class="slider round"></span>
-							</label>
-						</div>
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<span class="slider round"></span>
-							</label>
-						</div>
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<span class="slider round"></span>
-							</label>
-						</div>
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<span class="slider round"></span>
-							</label>
-						</div>
-						<div class="row">
-							<div class="col-8">Comision</div>
-							<label class="switch">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<span class="slider round"></span>
-							</label>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -71,7 +30,20 @@
 
 <script>
 	$(document).ready(function() {
-
+		$.post('web/listarcomisiones', {}, function(data) {
+			console.log(data);
+			var aux = '';
+			for(var i in data){
+				aux = '<div class="row align-items-center">\
+					<div class="col-8">'+data[i].descripcion+'</div>\
+					<label class="switch">\
+						<input class="form-check-input" type="checkbox" value="'+data[i].idcomision+'">\
+						<span class="slider round"></span>\
+					</label>\
+				</div><hr>'
+				$("#card-comisiones .card-body").append(aux);
+			}
+		});
 	});
 	function suscribir(){
 		$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
