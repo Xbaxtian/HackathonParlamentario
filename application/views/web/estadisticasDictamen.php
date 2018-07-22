@@ -33,15 +33,10 @@
 						</div>
 					</div>
 					<div class="row mx-auto">
-						<div class="col-12 mx-auto">
+						<div class="col-auto mx-auto">
 							<ul class="list-group m-2">
-  								<li class="list-group-item list-group-item-action list-group-item-primary" align="center">
-									<p align="center">Aprueba: <span style="font-size: 30px" id="porca"></span></p>
-								</li>
-							</ul>
-							<ul class="list-group m-2">
-  								<li class="list-group-item list-group-item-action list-group-item-danger" align="center">
-									<p align="center">Desaprueba: <span style="font-size: 30px" id="porcb"></span></p>
+  								<li class="aprueba" align="center">
+									<p align="center">Lo aprueban el <span style="font-size: 25px" id="porca"></span></p>
 								</li>
 							</ul>
 						</div>
@@ -134,7 +129,7 @@
 			porcentaje5 = Math.round(100*(parseInt(djson.data.datasets[0].data[5]))/ total);
 			//console.log(porcentaje);
 			$("#porca").html('<b>'+porcentajea+'%</b>');
-			$("#porcb").html('<b>'+porcentajeb+'%</b>');
+			//$("#porcb").html('<b>'+porcentajeb+'%</b>');
 		});
 	});
 </script>
@@ -261,7 +256,7 @@
 				porcentaje5 = Math.round(100*(parseInt(djson.data.datasets[0].data[5]))/ total);
 				//console.log(porcentaje);
 				$("#porca").html('<b>'+porcentajea+'%</b>');
-				$("#porcb").html('<b>'+porcentajeb+'%</b>');
+				//$("#porcb").html('<b>'+porcentajeb+'%</b>');
 
 			});
 		});
