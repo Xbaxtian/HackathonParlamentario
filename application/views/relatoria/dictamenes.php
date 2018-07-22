@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </table>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-dark redirect float-right" href="dictamen/anadirdictamen">Añadir</button>
+                    <button type="button" class="btn btn-dark redirect float-right" href="<?php echo base_url()?>dictamen/anadirdictamen">Añadir</button>
                 </div>
             </div>
        </div>

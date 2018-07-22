@@ -13,11 +13,15 @@ class Dictamen extends CI_Controller{
 
 	public function index(){
 		$dictamenes = $this->dictamenModel->getDictamenes();
-		header('Content-Type: application/json');
-		echo json_encode(array("result"=>$dictamenes));
 
 		$dataView = array("view"=>'relatoria/dictamenes',"data"=>array('dictamenes'=>$dictamenes));
 		$this->load->view('layout',$dataView);
+	}
+
+	public function listardictamenes(){ // LISTA DE DICTAMENES
+		$dictamenes = $this->dictamenModel->getDictamenes();
+		header('Content-Type: application/json');
+    	echo json_encode( $dictamenes );
 	}
 
 	public function anadirdictamen(){
@@ -47,6 +51,19 @@ class Dictamen extends CI_Controller{
         $this->load->view('relatoria/anadirdictamen',$data);
 	}
 
+	public function obtenerdictamen(){ // DICTAMENES POR id
+		$id = $this->input->post('idObj');
+
+		$resultado = $this->dictamenModel->getDictamenid($id);
+		$dcomisiones = $this->comisionModel->getcomisiondictamen($id); // comisiones
+		$tipodictamen = $this->dictamenModel->obtenertipo($resultado[0]['id_tipo_dictamen']);
+		$estadodictamen = $this->dictamenModel->obtenerestado($resultado[0]['id_dictamen']);
+
+		$data = array('resultado'=>$resultado,'dcomisiones' => $dcomisiones,'tipodictamen'=>$tipodictamen,'estadodictamen'=>$estadodictamen);
+		header('Content-Type: application/json');
+    	echo json_encode( $data );
+
+	}
 	public function recibirdatos(){
 		$this->form_validation->set_rules("titulo", "Título", "required");
 		$this->form_validation->set_rules("codigo", "Código", "required");

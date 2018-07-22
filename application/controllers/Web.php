@@ -12,6 +12,11 @@ class Web extends CI_Controller{
 		$dataView = array("view"=>'web/index',"data"=>array());
 		$this->load->view('layout',$dataView);
 	}
+
+	public function recibirdatos(){
+		
+	}
+
 }
 
 

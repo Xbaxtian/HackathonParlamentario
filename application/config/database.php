@@ -75,9 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'db-instance.crkeb28xod4b.sa-east-1.rds.amazonaws.com',
-	'username' => 'root',
-	'password' => 'hackathon-parlamentario',
+	'hostname' => 'sl-us-south-1-portal.29.dblayer.com',
+	'username' => 'admin',
+	'port'=>'50772',
+	'password' => 'NSEZGTHTKDXXAJZX',
 	'database' => 'hackathon',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
