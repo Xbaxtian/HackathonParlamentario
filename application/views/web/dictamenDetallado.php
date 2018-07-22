@@ -59,39 +59,40 @@
 
 <script>
     $(document).ready(function(){
-    //$.post("dictamen/obtenerdictamen",{"idObj":"RF9-685"},function(data){
-        //console.log(data);
-        var aux = '';
-        aux =   '<div class="row">\
-                <label class="col-12"><b>SUMILLA:</b></label>\
-                </div>\
-                <div class="card">\
-                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
-                </div>\
-                <br>';
-        $("#cuerpo").append(aux);
-        aux =   '<div class="row">\
-                <label class="col-12"><b>PROPUESTA POR:</b></label>\
-                </div>\
-                <div class="card">\
-                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
-                </div>\
-                <br>';
-        $("#cuerpo").append(aux);
-        aux =   '<div class="row">\
-                <label class="col-12"><b>BANCADA:</b></label>\
-                </div>\
-                <div class="card">\
-                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
-                </div>\
-                <br>';
-        $("#cuerpo").append(aux);
-        aux =   '<div class="row">\
-                <label class="col-12"><b>FECHA DE DEBATE:</b></label>\
-                </div>\
-                <div class="card">\
-                <label class="col-12 py-2" style="font-size:20px" align="center"><b>'+'</b></label>\
-                </div>';
-        $("#cuerpo").append(aux);
+        $.post("<?= base_url()?>dictamen/obtenerdictamen",{"idObj":"RF9-685"},function(data){
+            console.log(data);
+            var aux = '';
+            aux =   '<div class="row">\
+                    <label class="col-12"><b>SUMILLA:</b></label>\
+                    </div>\
+                    <div class="card">\
+                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].sumilla+'</label>\
+                    </div>\
+                    <br>';
+            $("#cuerpo").append(aux);
+            aux =   '<div class="row">\
+                    <label class="col-12"><b>PROPUESTA POR:</b></label>\
+                    </div>\
+                    <div class="card">\
+                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].id_usuario+'</label>\
+                    </div>\
+                    <br>';
+            $("#cuerpo").append(aux);
+            aux =   '<div class="row">\
+                    <label class="col-12"><b>GRUPO PARLAMENTARIO:</b></label>\
+                    </div>\
+                    <div class="card">\
+                    <label class="col-12 mx-auto py-2" align="justified">'+"PODER EJECUTIVO"+'</label>\
+                    </div>\
+                    <br>';
+            $("#cuerpo").append(aux);
+            aux =   '<div class="row">\
+                    <label class="col-12"><b>FECHA DE DEBATE:</b></label>\
+                    </div>\
+                    <div class="card">\
+                    <label class="col-12 py-2" style="font-size:20px" align="center"><b>'+data.resultado[0].fecha+'</b></label>\
+                    </div>';
+            $("#cuerpo").append(aux);
+        });
     });
 </script>
