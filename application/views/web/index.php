@@ -38,10 +38,12 @@
 				$("#tablero").append(aux);
 			}
 			$("#tablero .item div").on("click",function(){
-				window.location.href = "<?=base_url()?>detalleDictamen";
+				console.log($("span:nth-child(1)",$(this).parent()).html());
+				window.location.href = "<?=base_url()?>detalleDictamen/?proyecto="+$("span:nth-child(1)",$(this).parent()).html();
 			});
 			$("#tablero .item button").on("click",function(){
-				window.location.href = "<?=base_url()?>estadisticas";
+				console.log($("span:nth-child(1)",$(this).parent()).html());
+				window.location.href = "<?=base_url()?>estadisticas/?proyecto="+$("span:nth-child(1)",$(this).parent()).html();
 			});
 		});
 

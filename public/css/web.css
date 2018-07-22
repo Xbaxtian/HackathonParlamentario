@@ -1,12 +1,12 @@
 /*Tarjetas principales*/
 .tarjeta{
 	border-top: #ed1d24 solid 5px !important;
-	box-shadow: 2px 2px 5px #999;
+	box-shadow: 2px 2px 5px #999, -2px 2px 5px #999;
 }
 
 .comentario{
 	border-top: #474343 solid 5px !important;
-	box-shadow: 2px 2px 5px #999;
+	box-shadow: 2px 2px 5px #999, -2px 2px 5px #999;
 }
 
 /*TABLERO DICTAMENES*/
