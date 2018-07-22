@@ -66,28 +66,17 @@
 
 	$(document).ready(function(){
 		$.post("<?= base_url()?>web/enviarpuntuaciones",{"idObj":codigo},function(data){
-			console.log(data);
-			total = parseInt(data.puntuaciones[0].cantidad) +
-					parseInt(data.puntuaciones[1].cantidad) +
-					parseInt(data.puntuaciones[2].cantidad) +
-					parseInt(data.puntuaciones[3].cantidad) +
-					parseInt(data.puntuaciones[4].cantidad);
-			//console.log(total);
-			porcentaje = Math.round(100*(parseInt(data.puntuaciones[3].cantidad) + parseInt(data.puntuaciones[4].cantidad))/ total);
-			//console.log(porcentaje);
-			$("#porc").html('<b>'+porcentaje+'%</b>');
-
 			var ctx = document.getElementById("myChart").getContext('2d');
-			var myChart = new Chart(ctx, {
+			var djson = {
 				type: 'pie',
 				data: {
 					labels: ["Muy malo", "Malo", "Regular", "Bueno", "Muy bueno"],
 					datasets: [{
-						data: 	[	data.puntuaciones[0].cantidad,
-									data.puntuaciones[1].cantidad,
-									data.puntuaciones[2].cantidad,
-									data.puntuaciones[3].cantidad,
-									data.puntuaciones[4].cantidad],
+						data: 	[	0,
+									0,
+									0,
+									0,
+									0],
 						backgroundColor: [
 							'rgb(240, 72, 68)',//muy malo
 							'rgb(255, 168, 71)',//malo
@@ -105,7 +94,21 @@
 			            }
 			        }
 				}
-			});
+			}
+			for(var i in data.puntuaciones){
+				var aux = data.puntuaciones[i].calificacion;
+				djson.data.datasets[0].data[aux] =  data.puntuaciones[i].cantidad;
+			}
+			var myChart = new Chart(ctx, djson);
+			total = parseInt(djson.data.datasets[0].data[0]) +
+					parseInt(djson.data.datasets[0].data[1]) +
+					parseInt(djson.data.datasets[0].data[2]) +
+					parseInt(djson.data.datasets[0].data[3]) +
+					parseInt(djson.data.datasets[0].data[4]);
+			//console.log(total);
+			porcentaje = Math.round(100*(parseInt(djson.data.datasets[0].data[3]) + parseInt(djson.data.datasets[0].data[4]))/ total);
+			//console.log(porcentaje);
+			$("#porc").html('<b>'+porcentaje+'%</b>');
 		});
 	});
 </script>
