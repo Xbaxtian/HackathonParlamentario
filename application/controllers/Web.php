@@ -6,6 +6,8 @@ class Web extends CI_Controller{
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('comisionModel');
+		$this->load->model('dictamenModel');
 	}
 
 	public function index(){
@@ -26,6 +28,47 @@ class Web extends CI_Controller{
 	public function suscripcion(){
 		$this->load->view("web/suscripcion");
 	}
+
+	public function listarcomisiones(){ // LISTA DE comisiones
+		$comisiones = $this->comisionModel->getComisiones();
+		header('Content-Type: application/json');
+    	echo json_encode( $comisiones );
+	}
+
+	public function recibirdatos(){
+
+		$this->form_validation->set_rules("dni", "DNI", "required");
+
+		if ($this->form_validation->run() == FALSE)
+        {
+			//$this->load->view('relatoria/anadirdictamen',$data);
+		}
+		else
+		{
+			$data = array('dni' => $this->input->post("dni"),
+						  'codigo' => $this->input->post("codigo"),
+						  'comentario' => $this->input->post('comentario'),
+					  	  'calificacion'=>$this->input->post('calificacion'));
+
+			$resultado = $this->comisionModel->registrarpuntuacion($data);
+			header('Content-Type: application/json');
+			echo json_encode(array("result"=>$resultado));
+		}
+	}
+
+	public function enviarpuntuaciones(){
+
+		$id = $this->input->post('idObj');
+		$resultado = $this->dictamenModel->getDictamenid($id);
+		$puntuaciones =  $this->comisionModel->obtenerpuntuaciones($id);
+
+		$data = array('resultado'=>$resultado,'puntuaciones'=>$puntiaciones);
+		header('Content-Type: application/json');
+    	echo json_encode( $data );
+	}
+
+
+
 }
 
 
