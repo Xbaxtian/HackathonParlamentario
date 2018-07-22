@@ -119,4 +119,16 @@ class ComisionModel extends CI_Model{
            }
     }
 
+    public function busquedatoken($token){
+        $this->db->select('*');
+        $this->db->from('dictamenes');
+        $or = array('codigo' => $token, 'titulo' => $token, 'sumilla' => $token,'fec_debate'=>$token);
+        $this->db->or_like($or);
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
 }

@@ -82,8 +82,8 @@ class Web extends CI_Controller{
 			$data = array('nombres' => $this->input->post("nombre"),
 						  'apellidos' => $this->input->post("apellidos"),
 						  'email' => $this->input->post('email'),
-					  	  'dni'=>$this->input->post('dni')
-					      'telefono'=>$this->input->post('telefono')
+					  	  'dni'=>$this->input->post('dni'),
+					      'telefono'=>$this->input->post('telefono'),
 					  	  'comisiones'=> $this->input->post('comisiones'));
 
 			$resultado = $this->comisionModel->registrarsuscribcion($data);
@@ -92,6 +92,12 @@ class Web extends CI_Controller{
 		}
 	}
 
+	public function busqueda(){
+		$token = $this->input->post("algo");
+		$busqueda = $this->comisionModel->busquedatoken($token);
+		header('Content-Type: application/json');
+		echo json_encode(array("result"=>$busqueda));
+	}
 
 
 }
