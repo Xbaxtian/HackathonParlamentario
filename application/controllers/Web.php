@@ -79,10 +79,10 @@ class Web extends CI_Controller{
 		}
 		else
 		{
-			$data = array('dni' => $this->input->post("nombre"),
-						  'codigo' => $this->input->post("apellidos"),
-						  'comentario' => $this->input->post('email'),
-					  	  'calificacion'=>$this->input->post('dni')
+			$data = array('nombres' => $this->input->post("nombre"),
+						  'apellidos' => $this->input->post("apellidos"),
+						  'email' => $this->input->post('email'),
+					  	  'dni'=>$this->input->post('dni')
 					      'telefono'=>$this->input->post('telefono')
 					  	  'comisiones'=> $this->input->post('comisiones'));
 
