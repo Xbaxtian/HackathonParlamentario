@@ -5,32 +5,9 @@
 </div>
 <div class="card mb-3 tarjeta">
     <div class="card-body">
-        <div class="row">
-            <label class="col-12"><b>SUMILLA:</b></label>
-        </div>
-        <div class="card">
-            <label class="col-12 mx-auto py-2" align="justified">Propone autorizar al señor Presidente Constitucional de la República, para salir del territorio nacional del 30 de junio al 02 de julio de 2016, con el objeto de viajar a la ciudad de Puerto Varas, República de Chile, a fin de participar en la XI Cumbre de Jefes de Estado de la Alianza del Pacífico, ocasión en la cual el Perú entregará la Presidencia Pro Témpore de la Alianza del Pacífico ejercida desde julio de 2015</label>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-12"><b>PROPUESTA POR:</b></label>
-        </div>
-        <div class="card">
-            <label class="col-12 mx-auto py-2" align="justified">PODER EJECUTIVO</label>
-        </div>
-		<br>
-        <div class="row">
-            <label class="col-12"><b>BANCADA:</b></label>
-        </div>
-        <div class="card">
-            <label class="col-12 mx-auto py-2" align="justified"> </label>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-12"><b>FECHA DE DEBATE:</b></label>
-        </div>
-        <div class="card">
-            <label class="col-12 py-2" style="font-size:20px" align="center"><b>12/12/1999</b></label>
+        <!--AQUI VA EL CODIGO GENERADO POR EL SCRIPT-->
+        <div class="" id="cuerpo">
+
         </div>
         <br>
         <div class="row" align="center">
@@ -77,5 +54,44 @@
         var val = $(this).attr("calificacion");
         console.log(val);
         $("#ranking_valor").html(val);
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+    //$.post("dictamen/obtenerdictamen",{"idObj":"RF9-685"},function(data){
+        //console.log(data);
+        var aux = '';
+        aux =   '<div class="row">\
+                <label class="col-12"><b>SUMILLA:</b></label>\
+                </div>\
+                <div class="card">\
+                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
+                </div>\
+                <br>';
+        $("#cuerpo").append(aux);
+        aux =   '<div class="row">\
+                <label class="col-12"><b>PROPUESTA POR:</b></label>\
+                </div>\
+                <div class="card">\
+                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
+                </div>\
+                <br>';
+        $("#cuerpo").append(aux);
+        aux =   '<div class="row">\
+                <label class="col-12"><b>BANCADA:</b></label>\
+                </div>\
+                <div class="card">\
+                <label class="col-12 mx-auto py-2" align="justified">'+'</label>\
+                </div>\
+                <br>';
+        $("#cuerpo").append(aux);
+        aux =   '<div class="row">\
+                <label class="col-12"><b>FECHA DE DEBATE:</b></label>\
+                </div>\
+                <div class="card">\
+                <label class="col-12 py-2" style="font-size:20px" align="center"><b>'+'</b></label>\
+                </div>';
+        $("#cuerpo").append(aux);
     });
 </script>
