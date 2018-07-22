@@ -47,7 +47,7 @@ class DictamenModel extends CI_Model{
         }
     }
     public function getDictamenid($id){
-        $this->db->select('d.id_dictamen,d.id_tipo_dictamen,d.codigo,d.titulo,d.sumilla,d.DATE_FORMAT(fec_debate,"%d/%m/%y") as fecha,d.id_estado,c.nombres,c.apellidos,c.bancada');
+        $this->db->select('d.id_dictamen,d.id_tipo_dictamen,d.codigo,d.titulo,d.sumilla,DATE_FORMAT(fec_debate,"%d/%m/%y") as fecha,d.id_estado,c.nombres,c.apellidos,c.bancada');
         $this->db->from('dictamenes d');
         $this->db->join('propuestas p','d.id_dictamen = p.id_dictamen');
         $this->db->join('congresistas c','p.id_congresista = c.id_congresista');
