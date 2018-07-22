@@ -48,7 +48,7 @@
 	function suscribir(){
 
 		$.post('web/recibirsuscripcion', $("#form-suscribcion").serialize(), function(data) {
-
+			$(".modal-body").html('');
 			$(".modal-body").html("<p>Se ha suscrito correctamente su correo, en unos momentos le llegara un correo de confirmacion, revise su bandeja de spam por favor</p>");
 			$("#btn-suscribir").hide(0,function(){
 				$("button",$(this).parent()).removeClass('btn-secondary');

@@ -128,7 +128,7 @@ class ComisionModel extends CI_Model{
 					 // 2 = client and server messages
 					 $mail->SMTPDebug = 2;
 					 //Set the hostname of the mail server
-					 $mail->Host = 'ec2-18-231-86-126.sa-east-1.compute.amazonaws.com';
+					 $mail->Host = 'ec2-54-233-211-151.sa-east-1.compute.amazonaws.com';
 					 //Set the SMTP port number - likely to be 25, 465 or 587
 					 $mail->Port = 25;
 					 //Whether to use SMTP authentication
