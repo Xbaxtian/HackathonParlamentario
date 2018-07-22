@@ -1,11 +1,11 @@
 <div class="modal-content">
 	<div class="modal-header" style="">
-		<h5 class="modal-title">Suscribción</h5>
+		<h5 class="modal-title">Suscripción</h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<div class="modal-body">
+	<div class="modal-body tarjeta">
 		<p>Seleccione sus preferencias y las leyes le llegaran a su correo completamente GRATIS</p>
 		<form id="form-suscribcion" action="suscripcion">
 			<div class="form-group">

@@ -85,9 +85,9 @@ class Web extends CI_Controller{
 
 	public function busqueda(){
 		$token = $this->input->post("algo");
-		$busqueda = $this->comisionModel->busquedatoken($token);
+		$busqueda = $this->dictamenModel->busquedatoken($token);
 		header('Content-Type: application/json');
-		echo json_encode(array("result"=>$busqueda));
+		echo json_encode($busqueda);
 	}
 
 

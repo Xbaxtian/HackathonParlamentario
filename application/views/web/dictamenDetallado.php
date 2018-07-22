@@ -1,7 +1,7 @@
 
 <br>
-<div class="" align="CENTER">
-   <label style="font-size:30px"><b>DICTAMEN ACTUAL DE PATRIARCADO MACHISTA OPRESOR</b></label>
+<div  align="CENTER">
+   <label style="font-size:15px" class="titulo"></label>
 </div>
 <div class="card mb-3 tarjeta">
     <div class="card-body">
@@ -76,7 +76,11 @@
 <script>
     $(document).ready(function(){
         $.post("<?= base_url()?>dictamen/obtenerdictamen",{"idObj":codigo},function(data){
-            console.log(codigo);
+            $(".titulo").html('<b>'+data.resultado[0].titulo+'</b>');
+			var congresistas = ""
+			for(var i in data.resultado){
+				congresistas = congresistas.concat(data.resultado[i].nombres + " " + data.resultado[i].apellidos+", " );
+			}
             var aux = '';
             //codigo = data.resultado[0].codigo;
             aux =   '<div class="row">\
@@ -91,7 +95,7 @@
                     <label class="col-12"><b>PROPUESTA POR:</b></label>\
                     </div>\
                     <div class="card">\
-                    <label class="col-12 mx-auto py-2" align="justified">'+data.resultado[0].apellidos+'</label>\
+                    <label class="col-12 mx-auto py-2" align="justified">'+congresistas+'</label>\
                     </div>\
                     <br>';
             $("#cuerpo").append(aux);

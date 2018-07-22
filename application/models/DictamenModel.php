@@ -155,4 +155,17 @@ class DictamenModel extends CI_Model{
         return "error";
     }
     }
+
+	public function busquedatoken($token){
+        $this->db->select('id_dictamen,id_usuario,id_tipo_dictamen,codigo,titulo,version,sumilla,DATE_FORMAT(fec_debate,"%d/%m/%y") as fecha,id_estado');
+        $this->db->from('dictamenes');
+        $or = array('codigo' => $token, 'titulo' => $token, 'sumilla' => $token,'fec_debate'=>$token);
+        $this->db->or_like($or);
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
 }
