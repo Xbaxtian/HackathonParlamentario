@@ -22,7 +22,8 @@ class Web extends CI_Controller{
 	}
 
 	public function estadisticasDictamen(){
-		$dataView = array("view"=>'web/estadisticasDictamen',"data"=>array());
+		$codigo = $this->input->get('proyecto');
+		$dataView = array("view"=>'web/estadisticasDictamen',"data"=>array("codigo"=>$codigo));
 		$this->load->view('layout',$dataView);
 	}
 
@@ -38,7 +39,7 @@ class Web extends CI_Controller{
 
 	public function recibircalificacion(){
 
-		$data = array('dni' => 12345678,
+		$data = array('dni' => 11111113,
 					  'codigo' => $this->input->post("codigo"),
 					  'comentario' => $this->input->post('comentario'),
 				  	  'calificacion'=>$this->input->post('puntaje'));
@@ -54,7 +55,18 @@ class Web extends CI_Controller{
 		$resultado = $this->dictamenModel->getDictamenid($id);
 		$puntuaciones =  $this->comisionModel->obtenerpuntuaciones($id);
 
-		$data = array('resultado'=>$resultado,'puntuaciones'=>$puntiaciones);
+		$data = array('resultado'=>$resultado,'puntuaciones'=>$puntuaciones);
+		header('Content-Type: application/json');
+    	echo json_encode( $data );
+	}
+
+	public function enviarcomentarios(){
+
+		$id = $this->input->post('idObj');
+		$resultado = $this->dictamenModel->getDictamenid($id);
+		$comentarios =  $this->comisionModel->obtenercomentarios($id);
+
+		$data = array('resultado'=>$resultado,'comentarios'=>$comentarios);
 		header('Content-Type: application/json');
     	echo json_encode( $data );
 	}

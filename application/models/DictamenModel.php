@@ -150,10 +150,10 @@ class DictamenModel extends CI_Model{
             $this->db->trans_commit();
             return "success";
             }
-    }
-    catch (Exception $e) {
-        return "error";
-    }
+        }
+        catch (Exception $e) {
+            return "error";
+        }
     }
 
 	public function busquedatoken($token){

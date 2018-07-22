@@ -32,10 +32,23 @@ class ComisionModel extends CI_Model{
     }
 
     public function obtenerpuntuaciones($id){
-        $this->db->select('calificacion,count(calificacion)');
+        $this->db->select('calificacion,count(calificacion) as cantidad');
         $this->db->from('comentarios c');
-        $this->db->where('id_dictamen = '.$id);
+        $this->db->join('dictamenes dc','c.id_dictamen = dc.id_dictamen');
+        $this->db->where(array('dc.codigo'=>$id));
         $this->db->group_by("calificacion");
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if(count($result)>0){
+            return $result;
+        }
+    }
+
+    public function obtenercomentarios($id){
+        $this->db->select('comentario');
+        $this->db->from('comentarios c');
+        $this->db->join('dictamenes dc','c.id_dictamen = dc.id_dictamen');
+        $this->db->where(array('dc.codigo'=>$id));
         $query = $this->db->get();
         $result = $query->result_array();
         if(count($result)>0){
