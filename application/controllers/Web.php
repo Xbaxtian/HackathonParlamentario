@@ -99,7 +99,8 @@ class Web extends CI_Controller{
 
 	public function filtrar(){
 		$token = $this->input->post("algo");
-		$busquedar = $this->dictamenModel->busquedaregion($token);
+		$id = $this->input->post("id");
+		$busquedar = $this->dictamenModel->busquedaregion($token,$id);
 		header('Content-Type: application/json');
 		echo json_encode($busquedar);
 	}
